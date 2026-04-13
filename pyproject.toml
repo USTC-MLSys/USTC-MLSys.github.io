@@ -6,6 +6,9 @@ requires-python = ">=3.11"
 
 dependencies = []
 
+[tool.setuptools.packages.find]
+include = ["labsite*"]
+
 [tool.website]
 source = "content"
 output = "dist"
