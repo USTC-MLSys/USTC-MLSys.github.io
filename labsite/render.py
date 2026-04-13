@@ -930,16 +930,41 @@ class SiteRenderer:
 
     def render_blog_card(self, post: dict[str, Any], compact: bool = False) -> str:
         tokens = [slug_token(tag) for tag in post.get("tags", [])]
-        classes = join_classes("project-card", f"project-card--{post.get('tone', 'copper')}", "project-card--compact" if compact else "")
+        # 尝试从文章内容中找到第一张图片作为卡片右侧封面
+        image_src = None
+        image_alt = post.get('title', '')
+        for block in post.get('content', []):
+            if block.get('type') == 'image' and block.get('src'):
+                image_src = resolve_url(self.base_path, block.get('src'))
+                image_alt = block.get('alt') or block.get('title') or image_alt
+                break
+
+        classes = join_classes(
+            "project-card",
+            f"project-card--{post.get('tone', 'copper')}",
+            "project-card--compact" if compact else "",
+            "project-card--has-media" if image_src else "",
+        )
+
+        media_html = (
+          f'<div class="project-card__media"><img src="{h(image_src)}" alt="{h(image_alt)}" loading="lazy"/>'
+          f'</div>'
+          if image_src
+          else ""
+        )
+
         return f"""
         <article class="{classes}" data-reveal data-filter-item data-filter-tags="{' '.join(tokens)}">
-          <div class="card-kicker">
-            <span>{h(post.get('page_label', 'Blog'))}</span>
+          <div>
+            <div class="card-kicker">
+              <span>{h(post.get('page_label', 'Blog'))}</span>
+            </div>
+            <h3 class="project-card__title"><a href="{resolve_url(self.base_path, f"blog/{post['slug']}/")}">{h(post['title'])}</a></h3>
+            <p class="project-card__subtitle">{h(post.get('subtitle') or '')}</p>
+            <p class="project-card__summary">{h(post.get('summary') or '')}</p>
+            <div class="chip-row">{render_tag_list(post.get('tags', [])[:4])}</div>
           </div>
-          <h3 class="project-card__title"><a href="{resolve_url(self.base_path, f"blog/{post['slug']}/")}">{h(post['title'])}</a></h3>
-          <p class="project-card__subtitle">{h(post['subtitle'])}</p>
-          <p class="project-card__summary">{h(post['summary'])}</p>
-          <div class="chip-row">{render_tag_list(post.get('tags', [])[:4])}</div>
+          {media_html}
         </article>
         """
 
