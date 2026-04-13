@@ -1021,9 +1021,19 @@ class SiteRenderer:
             compact=True,
         )
         initials = "".join(part[0] for part in member["name"].split()[:2]).upper()
+        photo = member.get("photo", "")
+        if photo:
+            photo_src = resolve_url(self.base_path, photo)
+            avatar_html = (
+                f'<div class="team-card__avatar team-card__avatar--photo" aria-hidden="true">'
+                f'<img src="{h(photo_src)}" alt="{h(member["name"])}" loading="lazy" />'
+                f'</div>'
+            )
+        else:
+            avatar_html = f'<div class="team-card__avatar" aria-hidden="true">{h(initials)}</div>'
         return f"""
         <article class="team-card" data-reveal>
-          <div class="team-card__avatar" aria-hidden="true">{h(initials)}</div>
+          {avatar_html}
           <div class="team-card__body">
             <p class="team-card__role">{h(member['role'])}</p>
             <h3>{h(member['name'])}</h3>

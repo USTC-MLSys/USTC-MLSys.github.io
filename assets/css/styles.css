@@ -1259,6 +1259,29 @@ button {
   font-family: var(--serif);
   font-size: 1.5rem;
   font-weight: 700;
+  flex-shrink: 0;
+}
+
+/* 有照片时：等比缩放不裁剪，hover 上浮放大 */
+.team-card__avatar--photo {
+  background: none;
+  overflow: visible;
+  padding: 0;
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+}
+
+.team-card__avatar--photo:hover {
+  transform: translateY(-3px) scale(1.08);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18);
+}
+
+.team-card__avatar--photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center center;
+  display: block;
+  border-radius: inherit;
 }
 
 .team-card__body {
