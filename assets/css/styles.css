@@ -1044,6 +1044,28 @@ button {
   overflow: hidden;
 }
 
+/* 当卡片包含媒体时，将布局改为两列：内容在左，图片在右 */
+.project-card--has-media {
+  grid-template-columns: 1fr minmax(180px, 28%);
+  align-items: center;
+  gap: 1rem;
+}
+
+.project-card__media {
+  display: block;
+  width: 100%;
+}
+
+.project-card__media img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: 0.9rem;
+  border: 1px solid rgba(18, 20, 23, 0.06);
+  background: #fff;
+  box-shadow: var(--shadow-soft);
+}
+
 .project-card::after {
   content: "";
   position: absolute;
@@ -1468,6 +1490,11 @@ button {
 
   .section-heading__action {
     justify-self: start;
+  }
+
+  /* 在较窄屏幕上，移除右侧媒体列，使图片位于内容下方 */
+  .project-card--has-media {
+    grid-template-columns: 1fr;
   }
 }
 

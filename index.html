@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>MLSys Lab</title>
+    <meta name="description" content="Machine Learning Systems research group at the University of Science and Technology of China." />
+    <meta name="theme-color" content="#121417" />
+    <meta property="og:title" content="MLSys Lab" />
+    <meta property="og:description" content="Machine Learning Systems research group at the University of Science and Technology of China." />
+    <meta property="og:type" content="website" />
+    <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <script>document.documentElement.classList.add('js');</script>
+    <link rel="stylesheet" href="/assets/css/styles.css" />
+    
+  </head>
+  <body class="page page--home">
+    <div class="page-glow page-glow--teal" aria-hidden="true"></div>
+    <div class="page-glow page-glow--copper" aria-hidden="true"></div>
+    <header class="site-header" data-site-header>
+      <div class="shell site-header__inner">
+        <a class="brand" href="/">
+          <span class="brand__mark">ML</span>
+          <span class="brand__text">
+            <strong>MLSys Lab</strong>
+            <small>MLSys @ USTC</small>
+          </span>
+        </a>
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" data-menu-toggle>
+          <span></span>
+          <span></span>
+        </button>
+        <div class="site-search">
+          <input type="search" class="site-search__input" placeholder="Search..." data-search-input aria-label="Search" />
+          <div class="site-search__results" data-search-results></div>
+        </div>
+        <nav class="site-nav" id="site-nav" data-menu-panel>
+          <a class="site-nav__link" href="/projects/">Projects</a><a class="site-nav__link" href="/blog/">Blog</a><a class="site-nav__link" href="/publications/">Publications</a><a class="site-nav__link" href="/team/">Team</a>
+          
+        </nav>
+      </div>
+    </header>
+    <main class="site-main">
+      
+        <section class="hero">
+          <div class="shell hero__grid">
+            <div class="hero__copy">
+              <p class="hero__eyebrow" data-reveal>MLSys Lab</p>
+              <h1 class="hero__title" data-reveal>Advancing Scalable and Efficient Systems</h1>
+              <p class="hero__summary" data-reveal>Distributed LLM training systems, tensor core optimization, and technical notes.</p>
+              <div class="hero__actions" data-reveal><a class="button button--primary" href="/projects/">Projects</a><a class="button button--ghost" href="/blog/">Blogs</a><a class="button button--ghost" href="/publications/">Publications</a></div>
+              
+            </div>
+            <div class="hero__visual" data-reveal>
+              
+            <div class="hero-timeline">
+                
+                <a href="/blog/twist/" class="hero-timeline__item hero-timeline__item--blog">
+                    <div class="hero-timeline__content">
+                        <span class="hero-timeline__label">Blog</span>
+                        <span class="hero-timeline__date">2025</span>
+                        <strong class="hero-timeline__title">TWIST</strong>
+                    </div>
+                </a>
+            
+                <a href="/publications/tccl-nsdi-2025/" class="hero-timeline__item hero-timeline__item--publication">
+                    <div class="hero-timeline__content">
+                        <span class="hero-timeline__label">Publication</span>
+                        <span class="hero-timeline__date">2025</span>
+                        <strong class="hero-timeline__title">TCCL: Leading your Tensor Cores in Attention-Based Large Language Models Inference</strong>
+                    </div>
+                </a>
+            
+                <a href="/publications/dhellam-iccd-2025/" class="hero-timeline__item hero-timeline__item--award">
+                    <div class="hero-timeline__content">
+                        <span class="hero-timeline__label">Publication</span>
+                        <span class="hero-timeline__date">2025</span>
+                        <strong class="hero-timeline__title">DHeLlam: General-Purpose, Automatic Micro-Batch Co-Execution for Distributed LLM Training</strong>
+                    </div>
+                </a>
+            
+            </div>
+        
+            </div>
+          </div>
+        </section>
+        
+        <section class="section section--spotlight">
+          <div class="shell">
+            
+    <div class="section-heading" data-reveal>
+      <div>
+        <p class="section-heading__eyebrow">Featured</p>
+        <h2 class="section-heading__title">Latest from the lab.</h2>
+      </div>
+      <p class="section-heading__description"></p>
+      
+    </div>
+    
+            <div class="spotlight-grid">
+              
+        <article class="project-card project-card--copper project-card--compact project-card--has-media" data-reveal data-filter-item data-filter-tags="twist technical-note systems dhellam">
+          <div>
+            <div class="card-kicker">
+              <span>Blog</span>
+            </div>
+            <h3 class="project-card__title"><a href="/blog/twist/">TWIST</a></h3>
+            <p class="project-card__subtitle">Technical note with overview, layer breakdown, and MFU comparison figures.</p>
+            <p class="project-card__summary">A technical note for DHeLlam, the ICCD 2025 Best Paper, summarizing the currently available overview, layer breakdown, and H200 MFU comparison figures.</p>
+            <div class="chip-row"><span class="chip">TWIST</span><span class="chip">technical note</span><span class="chip">systems</span><span class="chip">DHeLlam</span></div>
+          </div>
+          <div class="project-card__media"><img src="/blog/TWIST/Dhellam_Overview.svg" alt="Dhellam overview figure used in the TWIST note." loading="lazy"/></div>
+        </article>
+        
+        <article class="publication-card publication-card--venue publication-card--compact" data-reveal data-filter-item data-filter-tags="conference parallel-and-distributed-intelligent-computing">
+          <div class="publication-card__meta">
+            <span>NSDI 2025</span>
+            <span></span>
+            
+          </div>
+          <h3 class="publication-card__title"><a href="/publications/tccl-nsdi-2025/">TCCL: Leading your Tensor Cores in Attention-Based Large Language Models Inference</a></h3>
+          <p class="publication-card__authors">Xuyang Zhao, Jiahao Wang, Zeyu Lai, Runyu Guan, Yifan Zhang, Peng Cheng, Cheng Li</p>
+          <p class="publication-card__summary">Listed on Cheng Li&#x27;s homepage as a selected publication to appear in NSDI 2025.</p>
+          <div class="chip-row"><span class="chip">LLM inference</span><span class="chip">tensor cores</span><span class="chip">systems</span></div>
+          <div class="card-actions"></div>
+        </article>
+        
+            </div>
+          </div>
+        </section>
+        
+        <section class="section">
+          <div class="shell">
+            
+    <div class="section-heading" data-reveal>
+      <div>
+        <p class="section-heading__eyebrow">Research Areas</p>
+        <h2 class="section-heading__title">What we work on.</h2>
+      </div>
+      <p class="section-heading__description"></p>
+      
+    </div>
+    
+            <div class="theme-grid">
+              
+            <article class="theme-card" data-reveal>
+              <div class="theme-card__eyebrow">parallel computing / distributed systems / AI systems</div>
+              <h3>Parallel and Distributed Intelligent Computing</h3>
+              <p>Automatic micro-batch co-execution, tensor core scheduling, and efficient distributed LLM training.</p>
+            </article>
+            
+            <article class="theme-card" data-reveal>
+              <div class="theme-card__eyebrow">storage / data systems / infrastructure</div>
+              <h3>Storage Systems</h3>
+              <p>Cloud-edge query processing, data-centric system design.</p>
+            </article>
+            
+            <article class="theme-card" data-reveal>
+              <div class="theme-card__eyebrow">data-centric / systems / large models</div>
+              <h3>Data-Centric System Design</h3>
+              <p>Data-centric perspective across large model system design problems.</p>
+            </article>
+            
+            </div>
+          </div>
+        </section>
+        
+        <section class="section">
+          <div class="shell">
+            
+    <div class="section-heading" data-reveal>
+      <div>
+        <p class="section-heading__eyebrow">Blog</p>
+        <h2 class="section-heading__title">Technical writeups.</h2>
+      </div>
+      <p class="section-heading__description"></p>
+      <a class="section-heading__action" href="/blog/">All posts</a>
+    </div>
+    
+            <div class="card-grid card-grid--projects">
+              
+        <article class="project-card project-card--copper project-card--has-media" data-reveal data-filter-item data-filter-tags="twist technical-note systems dhellam">
+          <div>
+            <div class="card-kicker">
+              <span>Blog</span>
+            </div>
+            <h3 class="project-card__title"><a href="/blog/twist/">TWIST</a></h3>
+            <p class="project-card__subtitle">Technical note with overview, layer breakdown, and MFU comparison figures.</p>
+            <p class="project-card__summary">A technical note for DHeLlam, the ICCD 2025 Best Paper, summarizing the currently available overview, layer breakdown, and H200 MFU comparison figures.</p>
+            <div class="chip-row"><span class="chip">TWIST</span><span class="chip">technical note</span><span class="chip">systems</span><span class="chip">DHeLlam</span></div>
+          </div>
+          <div class="project-card__media"><img src="/blog/TWIST/Dhellam_Overview.svg" alt="Dhellam overview figure used in the TWIST note." loading="lazy"/></div>
+        </article>
+        
+            </div>
+          </div>
+        </section>
+        
+        <section class="section">
+          <div class="shell">
+            
+    <div class="section-heading" data-reveal>
+      <div>
+        <p class="section-heading__eyebrow">Publications</p>
+        <h2 class="section-heading__title">Research publications and award-winning publications from the lab.</h2>
+      </div>
+      <p class="section-heading__description">Peer-reviewed work on distributed training, tensor core optimization, and efficient AI systems published at top-tier venues.</p>
+      <a class="section-heading__action" href="/publications/">View all publications</a>
+    </div>
+    
+            <div class="timeline-stack">
+              
+        <article class="publication-card publication-card--venue" data-reveal data-filter-item data-filter-tags="conference parallel-and-distributed-intelligent-computing">
+          <div class="publication-card__meta">
+            <span>NSDI 2025</span>
+            <span></span>
+            
+          </div>
+          <h3 class="publication-card__title"><a href="/publications/tccl-nsdi-2025/">TCCL: Leading your Tensor Cores in Attention-Based Large Language Models Inference</a></h3>
+          <p class="publication-card__authors">Xuyang Zhao, Jiahao Wang, Zeyu Lai, Runyu Guan, Yifan Zhang, Peng Cheng, Cheng Li</p>
+          <p class="publication-card__summary">Listed on Cheng Li&#x27;s homepage as a selected publication to appear in NSDI 2025.</p>
+          <div class="chip-row"><span class="chip">LLM inference</span><span class="chip">tensor cores</span><span class="chip">systems</span></div>
+          <div class="card-actions"></div>
+        </article>
+        
+        <article class="publication-card publication-card--award" data-reveal data-filter-item data-filter-tags="conference parallel-and-distributed-intelligent-computing">
+          <div class="publication-card__meta">
+            <span>ICCD 2025</span>
+            <span></span>
+            <span class="publication-card__award">Best Publication Award</span>
+          </div>
+          <h3 class="publication-card__title"><a href="/publications/dhellam-iccd-2025/">DHeLlam: General-Purpose, Automatic Micro-Batch Co-Execution for Distributed LLM Training</a></h3>
+          <p class="publication-card__authors">Haiquan Wang, Chaoyi Ruan, Jia He, Jiaqi Ruan, Chengjie Tang, Xiaosong Ma, Cheng Li</p>
+          <p class="publication-card__summary">ICCD 2025 Best Paper. This paper presents DHeLlam, a system for automatic micro-batch co-execution in distributed LLM training.</p>
+          <div class="chip-row"><span class="chip">LLM training</span><span class="chip">distributed systems</span><span class="chip">micro-batch co-execution</span></div>
+          <div class="card-actions"><a class="button button--ghost button--compact" href="https://ieeexplore.ieee.org/document/11310905" target="_blank" rel="noreferrer">PDF</a></div>
+        </article>
+        
+        <article class="publication-card publication-card--venue" data-reveal data-filter-item data-filter-tags="journal parallel-and-distributed-intelligent-computing">
+          <div class="publication-card__meta">
+            <span>TOCS 2025</span>
+            <span></span>
+            
+          </div>
+          <h3 class="publication-card__title"><a href="/publications/bigmac-tocs-2025/">BigMac: Enabling Automated Big Model Computation Graph Scheduling Over Geodistributed Clusters</a></h3>
+          <p class="publication-card__authors">Jiahao Wang, Xiaoyan Wang, Runyu Guan, Xuyang Zhao, Zeyu Lai, Cheng Li, Yinan Jing, Xinran Xie, Jiwu Shu</p>
+          <p class="publication-card__summary">Listed on Cheng Li&#x27;s homepage as a selected publication to appear in TOCS 2025.</p>
+          <div class="chip-row"><span class="chip">big models</span><span class="chip">scheduling</span><span class="chip">geodistributed clusters</span></div>
+          <div class="card-actions"></div>
+        </article>
+        
+            </div>
+          </div>
+        </section>
+        
+    </main>
+    <footer class="site-footer">
+        <div class="shell site-footer__inner">
+        <div class="site-footer__intro">
+          <p class="site-footer__eyebrow">MLSys @ USTC</p>
+          <h2>MLSys Lab</h2>
+          <p>Machine Learning Systems research group at the University of Science and Technology of China.</p>
+        </div>
+        <div class="site-footer__meta">
+          <p>University of Science and Technology of China</p>
+          <div class="site-footer__links"><a href="/projects/">Projects</a><a href="/blog/">Blog</a><a href="/publications/">Publications</a><a href="/team/">Team</a></div>
+        </div>
+      </div>
+    </footer>
+    <script defer src="/assets/js/site.js"></script>
+  </body>
+</html>

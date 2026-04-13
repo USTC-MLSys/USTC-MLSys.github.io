@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>TWIST | MLSys Lab</title>
+    <meta name="description" content="A technical note for DHeLlam, the ICCD 2025 Best Paper, summarizing the currently available overview, layer breakdown, and H200 MFU comparison figures." />
+    <meta name="theme-color" content="#121417" />
+    <meta property="og:title" content="TWIST | MLSys Lab" />
+    <meta property="og:description" content="A technical note for DHeLlam, the ICCD 2025 Best Paper, summarizing the currently available overview, layer breakdown, and H200 MFU comparison figures." />
+    <meta property="og:type" content="website" />
+    <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <script>document.documentElement.classList.add('js');</script>
+    <link rel="stylesheet" href="/assets/css/styles.css" />
+    
+  </head>
+  <body class="page page--blog-detail">
+    <div class="page-glow page-glow--teal" aria-hidden="true"></div>
+    <div class="page-glow page-glow--copper" aria-hidden="true"></div>
+    <header class="site-header" data-site-header>
+      <div class="shell site-header__inner">
+        <a class="brand" href="/">
+          <span class="brand__mark">ML</span>
+          <span class="brand__text">
+            <strong>MLSys Lab</strong>
+            <small>MLSys @ USTC</small>
+          </span>
+        </a>
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" data-menu-toggle>
+          <span></span>
+          <span></span>
+        </button>
+        <div class="site-search">
+          <input type="search" class="site-search__input" placeholder="Search..." data-search-input aria-label="Search" />
+          <div class="site-search__results" data-search-results></div>
+        </div>
+        <nav class="site-nav" id="site-nav" data-menu-panel>
+          <a class="site-nav__link" href="/projects/">Projects</a><a class="site-nav__link is-active" href="/blog/">Blog</a><a class="site-nav__link" href="/publications/">Publications</a><a class="site-nav__link" href="/team/">Team</a>
+          
+        </nav>
+      </div>
+    </header>
+    <main class="site-main">
+      
+            
+        <section class="detail-hero">
+          <div class="shell detail-hero__grid">
+            <div>
+              <p class="detail-hero__eyebrow" data-reveal>Blog</p>
+              <h1 class="detail-hero__title" data-reveal>TWIST</h1>
+              <p class="detail-hero__summary" data-reveal>This page collects figures related to DHeLlam, an ICCD 2025 Best Paper on general-purpose automatic micro-batch co-execution for distributed LLM training. The current note focuses on the available TWIST visuals, including the overview figure, layer breakdown, and end-to-end MFU comparison.</p>
+              <div class="detail-hero__meta" data-reveal><span>Lab Member        April 10, 2025</span></div>
+              <div class="detail-hero__tags" data-reveal><span class="chip">TWIST</span><span class="chip">technical note</span><span class="chip">systems</span><span class="chip">DHeLlam</span></div>
+              
+            </div>
+          </div>
+        </section>
+        
+            <section class="section detail-section">
+              <div class="shell detail-layout">
+                <article class="detail-prose" data-reveal>
+                  
+                <section class="prose-block" id="scope">
+                  <h2 class="prose__heading" id="scope">Scope</h2>
+                  <p>This page is a compact technical note built around the TWIST figures already available in the repository and the corresponding DHeLlam publication.</p>
+                </section>
+                
+                <section class="prose-block" id="what-can-be-confirmed-from-the-available-figures">
+                  <h2 class="prose__heading" id="what-can-be-confirmed-from-the-available-figures">What can be confirmed from the available figures</h2>
+                  <ul><li>The note includes three figures: an overview, a layer breakdown, and an MFU comparison.</li><li>The MFU comparison figure is titled &quot;End-to-End MFU Comparison on H200 (Qwen3-14B-like)&quot;.</li><li>The MFU figure compares Megatron-LM and TWIST under two configurations: TP=4, PP=2 and TP=8, PP=1.</li><li>The figure labels show 46% vs 49% for one configuration and 41% vs 47% for the other.</li></ul>
+                </section>
+                
+                <figure class="prose-figure">
+                  <h2 class="prose__heading" id="dhellam-overview">Dhellam overview</h2>
+                  <img src="/blog/TWIST/Dhellam_Overview.svg" alt="Dhellam overview figure used in the TWIST note." loading="lazy" />
+                  <figcaption>Overview figure from the TWIST material stored in the repository.</figcaption>
+                </figure>
+                
+                <figure class="prose-figure">
+                  <h2 class="prose__heading" id="layer-breakdown">Layer breakdown</h2>
+                  <img src="/blog/TWIST/layer_breakdown.svg" alt="Layer breakdown figure for TWIST." loading="lazy" />
+                  <figcaption>The source SVG includes a single Transformer layer breakdown with TWIST compute and communication labels.</figcaption>
+                </figure>
+                
+                <figure class="prose-figure">
+                  <h2 class="prose__heading" id="mfu-comparison">MFU comparison</h2>
+                  <img src="/blog/TWIST/mfu_comparison.svg" alt="End-to-end MFU comparison for TWIST." loading="lazy" />
+                  <figcaption>The source SVG includes the title &quot;End-to-End MFU Comparison on H200 (Qwen3-14B-like)&quot; and compares Megatron-LM with TWIST.</figcaption>
+                </figure>
+                
+                <section class="prose-block" id="current-note-status">
+                  <h2 class="prose__heading" id="current-note-status">Current note status</h2>
+                  <p>The current page stays close to the available figures and the public publication metadata. It can be expanded later when more written source material is ready.</p>
+                </section>
+                
+                </article>
+                <aside class="detail-sidebar" data-reveal>
+                  
+            <nav class="toc-nav" data-toc>
+                <p class="toc-nav__eyebrow">Contents</p>
+                <ul class="toc-nav__list"><li><a href="#scope" data-toc-link>Scope</a></li><li><a href="#what-can-be-confirmed-from-the-available-figures" data-toc-link>What can be confirmed from the available figures</a></li><li><a href="#dhellam-overview" data-toc-link>Dhellam overview</a></li><li><a href="#layer-breakdown" data-toc-link>Layer breakdown</a></li><li><a href="#mfu-comparison" data-toc-link>MFU comparison</a></li><li><a href="#current-note-status" data-toc-link>Current note status</a></li></ul>
+            </nav>
+        
+                </aside>
+              </div>
+            </section>
+            
+    </main>
+    <footer class="site-footer">
+        <div class="shell site-footer__inner">
+        <div class="site-footer__intro">
+          <p class="site-footer__eyebrow">MLSys @ USTC</p>
+          <h2>MLSys Lab</h2>
+          <p>Machine Learning Systems research group at the University of Science and Technology of China.</p>
+        </div>
+        <div class="site-footer__meta">
+          <p>University of Science and Technology of China</p>
+          <div class="site-footer__links"><a href="/projects/">Projects</a><a href="/blog/">Blog</a><a href="/publications/">Publications</a><a href="/team/">Team</a></div>
+        </div>
+      </div>
+    </footer>
+    <script defer src="/assets/js/site.js"></script>
+  </body>
+</html>
