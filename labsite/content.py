@@ -74,7 +74,7 @@ def sort_news(news_items: list[dict[str, Any]]) -> list[dict[str, Any]]:
 
 
 def sort_team(team: list[dict[str, Any]]) -> list[dict[str, Any]]:
-    group_order = {"faculty": 0, "phd": 1, "master": 2, "engineer": 3, "alumni": 4}
+    group_order = {"faculty": 0, "postdoc": 1, "phd": 2, "master": 3, "engineer": 4, "alumni": 5}
     return sorted(team, key=lambda member: (group_order.get(member.get("group", ""), 99), member["name"]))
 
 

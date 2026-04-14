@@ -608,7 +608,7 @@ class SiteRenderer:
         )
 
     def team_page(self) -> RenderedPage:
-        groups = [("faculty", "Faculty"), ("postdoc", "Postdocs"), ("phd", "PhD students"), ("master", "Master's students"), ("engineer", "Research engineers")]
+        groups = [("faculty", "Faculty"), ("postdoc", "Postdocs"), ("phd", "PhD students"), ("master", "Master's students"), ("engineer", "Research engineers"), ("alumni", "Alumni")]
         group_sections: list[str] = []
         for key, label in groups:
             members = [member for member in self.team if member["group"] == key]
