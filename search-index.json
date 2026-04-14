@@ -13,17 +13,6 @@
   },
   {
     "type": "publication",
-    "title": "TCCL: Leading your Tensor Cores in Attention-Based Large Language Models Inference",
-    "url": "/publications/tccl-nsdi-2025/",
-    "summary": "Listed on Cheng Li's homepage as a selected publication to appear in NSDI 2025.",
-    "tags": [
-      "LLM inference",
-      "tensor cores",
-      "systems"
-    ]
-  },
-  {
-    "type": "publication",
     "title": "DHeLlam: General-Purpose, Automatic Micro-Batch Co-Execution for Distributed LLM Training",
     "url": "/publications/dhellam-iccd-2025/",
     "summary": "ICCD 2025 Best Paper. This paper presents DHeLlam, a system for automatic micro-batch co-execution in distributed LLM training.",
@@ -31,61 +20,6 @@
       "LLM training",
       "distributed systems",
       "micro-batch co-execution"
-    ]
-  },
-  {
-    "type": "publication",
-    "title": "BigMac: Enabling Automated Big Model Computation Graph Scheduling Over Geodistributed Clusters",
-    "url": "/publications/bigmac-tocs-2025/",
-    "summary": "Listed on Cheng Li's homepage as a selected publication to appear in TOCS 2025.",
-    "tags": [
-      "big models",
-      "scheduling",
-      "geodistributed clusters"
-    ]
-  },
-  {
-    "type": "publication",
-    "title": "nnScaler: Constraint-Guided Parallelization Plan Generation for Deep Learning Training",
-    "url": "/publications/nnscaler-osdi-2024/",
-    "summary": "Listed on Cheng Li's homepage as a selected OSDI 2024 publication.",
-    "tags": [
-      "parallelization",
-      "training",
-      "deep learning systems"
-    ]
-  },
-  {
-    "type": "publication",
-    "title": "Tessel: Retrieving Complete Results of Distributed Query Processing from the Cloud-edge Continuum",
-    "url": "/publications/tessel-pvldb-2024/",
-    "summary": "Listed on Cheng Li's homepage as a selected PVLDB 2024 publication.",
-    "tags": [
-      "query processing",
-      "cloud-edge",
-      "distributed systems"
-    ]
-  },
-  {
-    "type": "publication",
-    "title": "Eliminating Inter-Expert Communication in Distributed MoE Training",
-    "url": "/publications/eliminating-inter-expert-osdi-2024/",
-    "summary": "Listed on Cheng Li's homepage as a selected OSDI 2024 publication.",
-    "tags": [
-      "MoE training",
-      "communication",
-      "distributed systems"
-    ]
-  },
-  {
-    "type": "publication",
-    "title": "Noctua: Towards Dynamic Resource Allocation for Datacenter Deep Learning Systems",
-    "url": "/publications/noctua-socc-2023/",
-    "summary": "Listed on Cheng Li's homepage as a selected SoCC 2023 publication.",
-    "tags": [
-      "resource allocation",
-      "datacenter",
-      "deep learning systems"
     ]
   }
 ]
