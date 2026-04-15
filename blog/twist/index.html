@@ -50,7 +50,7 @@
               <p class="detail-hero__eyebrow" data-reveal>Blog</p>
               <h1 class="detail-hero__title" data-reveal>TWIST</h1>
               <p class="detail-hero__summary" data-reveal>This page collects figures related to DHeLlam, an ICCD 2025 Best Paper on general-purpose automatic micro-batch co-execution for distributed LLM training. The current note focuses on the available TWIST visuals, including the overview figure, layer breakdown, and end-to-end MFU comparison.</p>
-              <div class="detail-hero__meta" data-reveal><span>Lab Member        April 10, 2025</span></div>
+              <div class="detail-hero__meta" data-reveal><span>The TWIST Team        April 10, 2025</span></div>
               <div class="detail-hero__tags" data-reveal><span class="chip">TWIST</span><span class="chip">technical note</span><span class="chip">systems</span><span class="chip">DHeLlam</span></div>
               
             </div>
@@ -59,47 +59,274 @@
         
             <section class="section detail-section">
               <div class="shell detail-layout">
-                <article class="detail-prose" data-reveal>
-                  
-                <section class="prose-block" id="scope">
-                  <h2 class="prose__heading" id="scope">Scope</h2>
-                  <p>This page is a compact technical note built around the TWIST figures already available in the repository and the corresponding DHeLlam publication.</p>
-                </section>
-                
-                <section class="prose-block" id="what-can-be-confirmed-from-the-available-figures">
-                  <h2 class="prose__heading" id="what-can-be-confirmed-from-the-available-figures">What can be confirmed from the available figures</h2>
-                  <ul><li>The note includes three figures: an overview, a layer breakdown, and an MFU comparison.</li><li>The MFU comparison figure is titled &quot;End-to-End MFU Comparison on H200 (Qwen3-14B-like)&quot;.</li><li>The MFU figure compares Megatron-LM and TWIST under two configurations: TP=4, PP=2 and TP=8, PP=1.</li><li>The figure labels show 46% vs 49% for one configuration and 41% vs 47% for the other.</li></ul>
-                </section>
-                
-                <figure class="prose-figure">
-                  <h2 class="prose__heading" id="dhellam-overview">Dhellam overview</h2>
-                  <img src="/blog/TWIST/Dhellam_Overview.svg" alt="Dhellam overview figure used in the TWIST note." loading="lazy" />
-                  <figcaption>Overview figure from the TWIST material stored in the repository.</figcaption>
-                </figure>
-                
-                <figure class="prose-figure">
-                  <h2 class="prose__heading" id="layer-breakdown">Layer breakdown</h2>
-                  <img src="/blog/TWIST/layer_breakdown.svg" alt="Layer breakdown figure for TWIST." loading="lazy" />
-                  <figcaption>The source SVG includes a single Transformer layer breakdown with TWIST compute and communication labels.</figcaption>
-                </figure>
-                
-                <figure class="prose-figure">
-                  <h2 class="prose__heading" id="mfu-comparison">MFU comparison</h2>
-                  <img src="/blog/TWIST/mfu_comparison.svg" alt="End-to-end MFU comparison for TWIST." loading="lazy" />
-                  <figcaption>The source SVG includes the title &quot;End-to-End MFU Comparison on H200 (Qwen3-14B-like)&quot; and compares Megatron-LM with TWIST.</figcaption>
-                </figure>
-                
-                <section class="prose-block" id="current-note-status">
-                  <h2 class="prose__heading" id="current-note-status">Current note status</h2>
-                  <p>The current page stays close to the available figures and the public publication metadata. It can be expanded later when more written source material is ready.</p>
-                </section>
-                
+                <article class="detail-prose">
+                  <div class="md-body"><h1>Introducing TWIST: Bringing Double-Helix Training to Hopper</h1>
+<p><strong>By:</strong> The TWIST Team (USTC, PolyU(H.K.), NUS, IAI Hefei, MBZUAI)
+<strong>Date:</strong> March 2026</p>
+<hr />
+<h2 id="key-highlights">Key Highlights</h2>
+<ul>
+<li><strong>3–6% absolute MFU gain</strong> on a single H200 node and <strong>up to 11% absolute MFU gain</strong> on multi-node H800 clusters over Megatron-LM, near the ideal overlap ceiling</li>
+<li><strong>Upgraded Megatron-LM from v0.7.0 to v0.14.0</strong>, adapting the system to the latest APIs</li>
+<li><strong>Matched production Megatron kernels</strong> by integrating Flash Attention 3 and Transformer Engine GEMM</li>
+<li><strong>Removed redundant CUDA synchronizations</strong>, reducing launch bubbles on high-end GPUs</li>
+<li><strong>Layer analysis</strong> shows TWIST hides <strong>83%</strong> of exposed communication, leaving only <strong>4.7%</strong> visible</li>
+</ul>
+<hr />
+<h2 id="what-is-twist">What is TWIST?</h2>
+<p><strong>TWIST</strong> (<strong>TW</strong>o-strand <strong>I</strong>nterleaved <strong>S</strong>cheduling for <strong>T</strong>raining) is an upgraded and rebranded version of <strong>DHeLlam</strong> (“Double-Helix LLM”), our micro-batch co-execution system for distributed LLM training published at <strong>ICCD 2025</strong> and awarded <strong>Best Paper</strong>. Its key idea is to <strong>overlap one micro-batch’s forward pass with another’s backward pass</strong> on the same GPU, hiding communication behind computation.</p>
+<p>In distributed training with TP, SP, CP, and EP, each transformer layer involves collective communication such as AllGather, ReduceScatter, All-to-All, and Send/Recv, which can consume <strong>20–55%</strong> of training time.</p>
+<p>DHeLlam addresses this with two mechanisms:</p>
+<ol>
+<li><strong>Model Folding</strong> — reshapes the pipeline into a W-pattern so forward and backward passes from two micro-batches coexist on each GPU, with <strong>under 3%</strong> extra memory overhead.</li>
+<li><strong>Operator Pairing</strong> — uses profiling and dynamic programming to pair forward and backward operators for maximum overlap under hardware constraints.</li>
+</ol>
+<p>On Ampere GPUs (A40/A800), DHeLlam achieved <strong>12–40%</strong> higher throughput than Megatron-LM, reached <strong>up to 64% MFU</strong>, and hid <strong>up to 83%</strong> of communication overhead. For more information, please refer to our <a href="https://ieeexplore.ieee.org/document/11310905">paper</a>.</p>
+<p><img alt="Dhellam Overview.svg" src="/blog/TWIST/image/Dhellam_Overview.svg" /></p>
+<p><em>Figure 1: Double-strand execution in TWIST (DHeLlam) on 4 GPUs</em></p>
+<p><strong>The question is whether these gains carry over to Hopper.</strong></p>
+<hr />
+<h2 id="the-challenge-bringing-twist-to-hopper">The Challenge: Bringing TWIST to Hopper</h2>
+<p>Porting the original DHeLlam codebase from Ampere to Hopper was more than a rebuild. Three issues stood out:</p>
+<ol>
+<li><strong>Framework mismatch</strong> — DHeLlam was built on Megatron-LM v0.7.0, while Hopper requires newer support in Megatron v0.14.0+ for Flash Attention 3, Transformer Engine FP8, updated NCCL, and changed APIs.</li>
+<li><strong>Kernel gap</strong> — DHeLlam’s original custom GEMM and attention kernels were designed for Ampere. On Hopper, they cannot fully use newer hardware features (e.g., FP8 Tensor Cores, TMA (Tensor Memory Accelerator), and warp specialization), so matching Megatron’s FA3 and TE GEMM kernels was necessary for both performance and fair comparison.</li>
+<li><strong>Synchronization overhead</strong> — frequent <code>torch.cuda.synchronize()</code> calls introduced launch bubbles. This mattered little on Ampere, but on faster Hopper GPUs it caused visible idle time and reduced efficiency.</li>
+</ol>
+<p>So while the core overlap idea remains the same, making it work well on Hopper required major updates to the framework, kernels, and execution flow — resulting in what we now call <strong>TWIST</strong>.</p>
+<hr />
+<h2 id="what-we-achieved">What We Achieved</h2>
+<h3 id="upgrade-1-megatron-lm-v070-v0140">Upgrade 1: Megatron-LM v0.7.0 → v0.14.0</h3>
+<p>We migrated TWIST's integration layer to work with Megatron-LM Core v0.14.0 (commit id: <code>23e00ed</code>). Key changes include:</p>
+<ul>
+<li><strong>MoE API migration</strong>: Updated <code>GroupedMLP</code> and <code>TopKRouter</code> instantiation to pass the new <code>model_comm_pgs</code> parameter, and adapted to the new routing return format (<code>routing_probs, routing_map</code> instead of <code>probs, indices</code>)</li>
+<li><strong>Attention backend</strong>: Replaced the original custom <code>pymha_varlen_fwd/bwd</code> with Megatron's <code>TEDotProductAttention</code>, which properly leverages Transformer Engine's Hopper-optimized attention paths</li>
+<li><strong>Transformer Engine API</strong>: Updated LayerNorm calls from the deprecated <code>transformer_engine_extensions</code> to the new <code>transformer_engine_torch</code> interface with explicit dtype parameters</li>
+<li><strong>Dynamic GPU architecture detection</strong>: <code>setup.py</code> now auto-detects all available CUDA devices and generates appropriate <code>gencode</code> flags, natively supporting sm_90 (Hopper)</li>
+</ul>
+<h3 id="upgrade-2-flash-attention-3-te-gemm">Upgrade 2: Flash Attention 3 + TE GEMM</h3>
+<p>To ensure a fair apples-to-apples comparison with Megatron-LM, we aligned TWIST's compute operators with Megatron's production kernels:</p>
+<p><strong>Flash Attention 3</strong>: Upgraded from FA2 to FA3, which exploits Hopper's asynchronous warp specialization for higher throughput. The training script now uses <code>--attention-backend flash</code> with FA3's Hopper-optimized paths.</p>
+<p><strong>Transformer Engine GEMM</strong>: Replaced the original custom GEMM kernels with TE's <code>general_gemm</code>:</p>
+<pre><code class="language-python">from transformer_engine.pytorch.cpp_extensions import general_gemm
+</code></pre>
+<p>This brings two benefits:</p>
+<ol>
+<li>The GEMM kernels are identical to what Megatron uses — any throughput difference is purely from TWIST's scheduling, not from faster/slower kernels</li>
+<li>FP8 quantization support (E4M3 for forward, E5M2 for backward) is available via <code>FP8QuantizerManager</code> for future exploration</li>
+</ol>
+<p>We validated operator alignment with comprehensive test suites (<code>test/dense_operators/test_gemm_fp16.py</code>, <code>test_gemm_fp8.py</code>) confirming accuracy parity.</p>
+<h3 id="upgrade-3-removing-cuda-synchronization-barriers">Upgrade 3: Removing CUDA Synchronization Barriers</h3>
+<p>The original code contained <code>torch.cuda.synchronize()</code> calls after each operator pair's execution to ensure completion before proceeding. We identified this as unnecessary — PyTorch's CUDA stream semantics and event-based synchronization already guarantee correct ordering. The explicit host-device synchronization was a conservative safety measure that had become a performance bottleneck:</p>
+<pre><code class="language-python"># Before (removed):
+if handle_status:
+    torch.cuda.synchronize()  # Blocks CPU until ALL GPU work finishes
+
+# After: rely on stream-level event synchronization
+</code></pre>
+<p>On Hopper, where individual kernels execute faster, the relative cost of a full device synchronization is amplified. Removing these barriers allows the CPU to stay ahead of the GPU, maintaining a healthy launch queue and eliminating idle gaps between kernels.</p>
+<hr />
+<h2 id="results">Results</h2>
+<p>We evaluate TWIST’s dense model training optimization on both single-node and multi-node setups, both in Hopper platform.</p>
+<h3 id="single-node-performance-qwen3-14b-like-8-h200">Single-Node Performance (Qwen3-14B-like, 8× H200)</h3>
+<h4>Experimental Setup</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GPU</td>
+<td>NVIDIA H200 × 8</td>
+</tr>
+<tr>
+<td>Model</td>
+<td>Qwen3-14B-like config (40 layers, hidden=5120, FFN=17408, 40 Attn heads, 8 KV heads)</td>
+</tr>
+<tr>
+<td>Global Batch Size</td>
+<td>100</td>
+</tr>
+<tr>
+<td>Micro Batch Size</td>
+<td>4</td>
+</tr>
+<tr>
+<td>Sequence Length</td>
+<td>8192</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Note:</strong> The Qwen3-14B-like model excludes the computation of RoPE and QK Normalization. Support for RoPE and QK Normalization within the model’s computation graph in TWIST is currently under development.</p>
+<h4>End-to-End MFU</h4>
+<table>
+<thead>
+<tr>
+<th>Configuration</th>
+<th>GPU Count</th>
+<th>TP</th>
+<th>PP</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Config 1</td>
+<td>8</td>
+<td>4</td>
+<td>2</td>
+</tr>
+<tr>
+<td>Config 2</td>
+<td>8</td>
+<td>8</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<p><img alt="End-to-End MFU Comparison on H200" src="/blog/TWIST/image/mfu_comparison.svg" /></p>
+<p><em>Figure 2: MFU comparison between Megatron-LM and TWIST across TP/PP configurations on 8× H200 GPUs. TWIST achieves </em><em>+3% absolute MFU gain</em><em> on Config 1 (46% → 49%) and </em><em>+6% absolute MFU gain</em><em> on Config 2 (41% → 47%).</em></p>
+<p>Across both TP/PP configurations, TWIST delivers a consistent <strong>3–6% absolute MFU improvement</strong> over vanilla Megatron-LM on a single H200 node.</p>
+<blockquote>
+<p><strong>A note on fair comparison</strong>: During development, we discovered that the original DHeLlam code had a bug causing backward gradients to be zero. This led to lower GPU power draw, higher boost clocks, and artificially faster kernel execution — inflating the apparent advantage. After fixing this bug and aligning all operators with Megatron’s implementations, the numbers above represent a genuine, reproducible improvement purely from TWIST’s communication-hiding scheduling.
+</p>
+</blockquote>
+<h3 id="multi-node-performance-qwen3-32b-like-32-h800">Multi-Node Performance (Qwen3-32B-like, 32× H800)</h3>
+<p>We further validate TWIST at scale on a 4-node H800 cluster (32 GPUs total) using a Qwen3-32B-like model configuration across a range of parallelism strategies and sequence lengths.</p>
+<h4>Experimental Setup</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GPU</td>
+<td>NVIDIA H800 × 32 (4 nodes × 8 GPUs)</td>
+</tr>
+<tr>
+<td>Model</td>
+<td>Qwen3-32B-like config (hidden=5120, FFN=25600, 64 Attn heads, 8 KV heads)</td>
+</tr>
+<tr>
+<td>Global Batch Size</td>
+<td>400</td>
+</tr>
+</tbody>
+</table>
+<h4>End-to-End MFU</h4>
+<table>
+<thead>
+<tr>
+<th>TP</th>
+<th>PP</th>
+<th>DP</th>
+<th>MBS</th>
+<th>SEQ_LEN</th>
+<th>Megatron MFU</th>
+<th>TWIST MFU</th>
+<th>Absolute MFU Gain</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2</td>
+<td>4</td>
+<td>4</td>
+<td>1</td>
+<td>4K</td>
+<td>47.27%</td>
+<td>55.49%</td>
+<td>+8.22%</td>
+</tr>
+<tr>
+<td>4</td>
+<td>2</td>
+<td>4</td>
+<td>2</td>
+<td>4K</td>
+<td>44.73%</td>
+<td>55.81%</td>
+<td>+11.08%</td>
+</tr>
+<tr>
+<td>8</td>
+<td>1</td>
+<td>4</td>
+<td>2</td>
+<td>4K</td>
+<td>36.11%</td>
+<td>46.13%</td>
+<td>+10.02%</td>
+</tr>
+<tr>
+<td>4</td>
+<td>2</td>
+<td>4</td>
+<td>1</td>
+<td>8K</td>
+<td>46.08%</td>
+<td>52.00%</td>
+<td>+5.92%</td>
+</tr>
+<tr>
+<td>8</td>
+<td>1</td>
+<td>4</td>
+<td>1</td>
+<td>8K</td>
+<td>37.40%</td>
+<td>48.09%</td>
+<td>+10.69%</td>
+</tr>
+</tbody>
+</table>
+<p>TWIST achieves impressively <strong>6–11% absolute MFU gain</strong> over Megatron-LM across all parallelism configurations on H800 clusters.</p>
+<h3 id="layer-level-breakdown-qwen3-14b-like-tp8-pp1">Layer-Level Breakdown (Qwen3-14B-like, TP=8, PP=1)</h3>
+<p>To understand where the single-node gains come from, we profiled the execution time of a single transformer layer in Megatron-LM and TWIST under the Qwen3-14B-like model:</p>
+<p><img alt="Single Transformer Layer Breakdown" src="/blog/TWIST/image/layer_breakdown.svg" /></p>
+<p><em>Figure 3: Execution time breakdown of a single transformer layer under TP=8, PP=1. Megatron-LM exposes 5.4 ms of communication (25% of layer time), while TWIST hides 83% of it through double-strand co-execution, leaving only 0.9 ms exposed. The green dashed line marks the theoretical perfect-overlap limit where all communication is perfectly overlapped (16.5 ms).</em></p>
+<p>Key observations:</p>
+<ol>
+<li><strong>83% of communication hidden</strong>: Exposed communication dropped from 5.5 ms to 0.9 ms — TWIST successfully hides the vast majority of TP/SP collective overhead.</li>
+<li><strong>Compute slowdown from co-execution is modest</strong>: When forward compute and backward compute run concurrently, they interfere slightly (sharing SMs, memory bandwidth, L2 cache). The total compute time increased from 16.5 ms to 18.3 ms — a <strong>10.9% slowdown</strong> overall, with per-operator-pair slowdown under 13%.</li>
+<li><strong>Residual exposed communication</strong>: The remaining 0.9 ms comes from one AllGather at the beginning of each layer that cannot be overlapped (no backward operator is available to pair with), this is mainly because TWIST overlaps at layer level.</li>
+<li><strong>Current vs. theoretical ceiling</strong>: TWIST achieves <strong>462 TFLOPS (47% MFU)</strong>, while the theoretical perfect-overlap limit is <strong>536 TFLOPS (54% MFU</strong>, shown as the <strong>green dashed line</strong> in Figure 3) — a <strong>7% absolute gap</strong> that represents the cost of compute slowdown and the one unhidden AllGather.</li>
+</ol>
+<hr />
+<h2 id="insight-why-mfu-is-still-below-60">Insight: Why MFU is Still Below 60%</h2>
+<p>Even with perfect communication hiding, the theoretical MFU ceiling for Qwen3-like configurations on H200 is only ~54% — well below the 60%+. The root cause is <strong>the model's narrow hidden dimension</strong>.</p>
+<p>Qwen3-14B and Qwen3-32B both use <code>hidden_size=5120</code>, which is relatively small for their parameter counts (achieved through more layers and a large FFN ratio rather than a wide hidden dimension). Under high tensor parallelism (TP=8), each GPU's GEMM dimensions become:</p>
+<ul>
+<li>QKV projection: <code>(5120/8) × 5120</code> = <code>640 × 5120</code></li>
+<li>Output projection: <code>5120 × (5120/8)</code> = <code>5120 × 640</code></li>
+</ul>
+<p>These narrow matrix shapes cannot fully saturate H200's massive Tensor Core throughput. The GPU spends proportionally more time on memory access and kernel launch overhead relative to useful FLOPs. This is a fundamental model-architecture limitation, not a scheduling issue — no overlap strategy can push MFU beyond what the compute kernels themselves can achieve.</p>
+<p>For models with wider hidden dimensions (e.g., LLaMA-3-70B with <code>hidden_size=8192</code>), we expect higher absolute MFU numbers since the per-GPU GEMM dimensions remain large enough to keep Tensor Cores busy even at high TP degrees.</p>
+<hr />
+<h2 id="summary-and-future-work">Summary and Future Work</h2>
+<p>By upgrading the original DHeLlam codebase to Megatron v0.14.0, aligning operators with FA3 and TE GEMM, and removing unnecessary CUDA synchronizations, we created <strong>TWIST</strong> — bringing double-helix co-execution to Hopper GPUs. TWIST achieves a clean <strong>3–6% absolute MFU gain</strong> on a single H200 node and <strong>up to 12% absolute MFU gain</strong> on multi-node H800 clusters over Megatron-LM.</p>
+<p>Layer-level analysis shows TWIST’s key advantage still holds on Hopper: overlapping forward communication with backward computation hides <strong>83%</strong> of exposed communication, with only a <strong>10.9%</strong> compute slowdown.</p>
+<p>Future work includes:</p>
+<ol>
+<li><strong>Closing the remaining 7% gap</strong> through finer-grained operator splitting and cross-layer pairing to reduce exposed AllGather and co-execution overhead.</li>
+<li><strong>Exploring FP8 training</strong> with TE GEMM, which may further reduce compute time but will require re-profiling overlap opportunities.</li>
+<li><strong>Testing wider models</strong> such as LLaMA3-70B and K2-V2, where higher per-GPU compute could increase MFU headroom.</li>
+<li><strong>Extending to MoE + EP on Hopper</strong>, where NCCL EP communication may create additional overlap opportunities.</li>
+</ol>
+<p>The complete codebase is open-source at <a href="https://github.com/DHelix-AI/dhelix">github.com/DHelix-AI/dhelix</a>.</p>
+<hr />
+<p><em>TWIST (formerly DHeLlam) is jointly developed and maintained by University of Science and Technology of China, Hong Kong Polytechnic University, National University of Singapore, Institute of Artificial Intelligence, Hefei Comprehensive National Science Center and Mohamed bin Zayed University of Artificial Intelligence. The original paper "DHeLlam: Hiding Communication Cost in LLM Training via Micro-batch Co-execution" received the Best Paper Award at ICCD 2025.</em></p></div>
                 </article>
-                <aside class="detail-sidebar" data-reveal>
+                <aside class="detail-sidebar">
                   
             <nav class="toc-nav" data-toc>
                 <p class="toc-nav__eyebrow">Contents</p>
-                <ul class="toc-nav__list"><li><a href="#scope" data-toc-link>Scope</a></li><li><a href="#what-can-be-confirmed-from-the-available-figures" data-toc-link>What can be confirmed from the available figures</a></li><li><a href="#dhellam-overview" data-toc-link>Dhellam overview</a></li><li><a href="#layer-breakdown" data-toc-link>Layer breakdown</a></li><li><a href="#mfu-comparison" data-toc-link>MFU comparison</a></li><li><a href="#current-note-status" data-toc-link>Current note status</a></li></ul>
+                <ul class="toc-nav__list"><li><a href="#key-highlights" data-toc-link>Key Highlights</a></li><li><a href="#what-is-twist" data-toc-link>What is TWIST?</a></li><li><a href="#the-challenge-bringing-twist-to-hopper" data-toc-link>The Challenge: Bringing TWIST to Hopper</a></li><li><a href="#what-we-achieved" data-toc-link>What We Achieved</a></li><li><a href="#upgrade-1-megatron-lm-v070-v0140" data-toc-link>Upgrade 1: Megatron-LM v0.7.0 → v0.14.0</a></li><li><a href="#upgrade-2-flash-attention-3-te-gemm" data-toc-link>Upgrade 2: Flash Attention 3 + TE GEMM</a></li><li><a href="#upgrade-3-removing-cuda-synchronization-barriers" data-toc-link>Upgrade 3: Removing CUDA Synchronization Barriers</a></li><li><a href="#results" data-toc-link>Results</a></li><li><a href="#single-node-performance-qwen3-14b-like-8-h200" data-toc-link>Single-Node Performance (Qwen3-14B-like, 8× H200)</a></li><li><a href="#multi-node-performance-qwen3-32b-like-32-h800" data-toc-link>Multi-Node Performance (Qwen3-32B-like, 32× H800)</a></li><li><a href="#layer-level-breakdown-qwen3-14b-like-tp8-pp1" data-toc-link>Layer-Level Breakdown (Qwen3-14B-like, TP=8, PP=1)</a></li><li><a href="#insight-why-mfu-is-still-below-60" data-toc-link>Insight: Why MFU is Still Below 60%</a></li><li><a href="#summary-and-future-work" data-toc-link>Summary and Future Work</a></li></ul>
             </nav>
         
                 </aside>
