@@ -13,18 +13,6 @@
   },
   {
     "type": "project",
-    "title": "Megatron-LM",
-    "url": "/projects/megatron-lm/",
-    "summary": "Distributed LLM training framework integration, benchmark experiments, and system optimization.",
-    "tags": [
-      "llm",
-      "training",
-      "distributed-systems",
-      "nvidia"
-    ]
-  },
-  {
-    "type": "project",
     "title": "Adacluster",
     "url": "/projects/adacluster/",
     "summary": "Adaptive clustering system for large-scale ML workloads with dynamic resource scheduling.",
