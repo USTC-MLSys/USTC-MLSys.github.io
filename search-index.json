@@ -1,5 +1,40 @@
 [
   {
+    "type": "project",
+    "title": "TWIST",
+    "url": "/projects/twist/",
+    "summary": "High-Efficiency LLM Training System via Strand Interleaving on NVIDIA Hopper GPUs.",
+    "tags": [
+      "llm",
+      "training",
+      "distributed-systems",
+      "hopper"
+    ]
+  },
+  {
+    "type": "project",
+    "title": "Megatron-LM",
+    "url": "/projects/megatron-lm/",
+    "summary": "Distributed LLM training framework integration, benchmark experiments, and system optimization.",
+    "tags": [
+      "llm",
+      "training",
+      "distributed-systems",
+      "nvidia"
+    ]
+  },
+  {
+    "type": "project",
+    "title": "Adacluster",
+    "url": "/projects/adacluster/",
+    "summary": "Adaptive clustering system for large-scale ML workloads with dynamic resource scheduling.",
+    "tags": [
+      "ml-systems",
+      "scheduling",
+      "resource-management"
+    ]
+  },
+  {
     "type": "blog",
     "title": "TWIST",
     "url": "/blog/twist/",

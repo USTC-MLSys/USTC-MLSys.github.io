@@ -12,6 +12,7 @@
 - **Matched production Megatron kernels** by integrating Flash Attention 3 and Transformer Engine GEMM
 - **Removed redundant CUDA synchronizations**, reducing launch bubbles on high-end GPUs
 - **Layer analysis** shows TWIST hides **83%** of exposed communication, leaving only **4.7%** visible
+- **Open-source** at [github.com/USTC-MLSys/TWIST](https://github.com/USTC-MLSys/TWIST).
 
 ---
 
@@ -196,8 +197,6 @@ Future work includes:
 2. **Exploring FP8 training** with TE GEMM, which may further reduce compute time but will require re-profiling overlap opportunities.
 3. **Testing wider models** such as LLaMA3-70B and K2-V2, where higher per-GPU compute could increase MFU headroom.
 4. **Extending to MoE + EP on Hopper**, where NCCL EP communication may create additional overlap opportunities.
-
-The complete codebase is open-source at [github.com/USTC-MLSys/TWIST](https://github.com/USTC-MLSys/TWIST).
 
 ---
 

@@ -71,6 +71,7 @@
 <li><strong>Matched production Megatron kernels</strong> by integrating Flash Attention 3 and Transformer Engine GEMM</li>
 <li><strong>Removed redundant CUDA synchronizations</strong>, reducing launch bubbles on high-end GPUs</li>
 <li><strong>Layer analysis</strong> shows TWIST hides <strong>83%</strong> of exposed communication, leaving only <strong>4.7%</strong> visible</li>
+<li><strong>Open-source</strong> at <a href="https://github.com/USTC-MLSys/TWIST">github.com/USTC-MLSys/TWIST</a>.</li>
 </ul>
 <hr />
 <h2 id="what-is-twist">What is TWIST?</h2>
@@ -318,7 +319,6 @@ if handle_status:
 <li><strong>Testing wider models</strong> such as LLaMA3-70B and K2-V2, where higher per-GPU compute could increase MFU headroom.</li>
 <li><strong>Extending to MoE + EP on Hopper</strong>, where NCCL EP communication may create additional overlap opportunities.</li>
 </ol>
-<p>The complete codebase is open-source at <a href="https://github.com/USTC-MLSys/TWIST">github.com/USTC-MLSys/TWIST</a>.</p>
 <hr />
 <p><em>TWIST (formerly DHeLlam) is jointly developed and maintained by University of Science and Technology of China, Hong Kong Polytechnic University, National University of Singapore, Institute of Artificial Intelligence, Hefei Comprehensive National Science Center and Mohamed bin Zayed University of Artificial Intelligence. The original paper "DHeLlam: Hiding Communication Cost in LLM Training via Micro-batch Co-execution" received the Best Paper Award at ICCD 2025.</em></p></div>
                 </article>
