@@ -13,7 +13,7 @@
     "name": "Youhui Bai",
     "role": "Investigator",
     "group": "faculty",
-    "bio": "Associate Professor at the School of Computer Science, University of Science and Technology of China. Research focuses on distributed LLM training and inference systems, algorithm–system co-design for large models, and scalable graph neural network computing frameworks, aiming to improve system performance and usability.",
+    "bio": "Associate Researcher at the School of Computer Science, University of Science and Technology of China. Research focuses on distributed LLM training and inference systems, algorithm–system co-design for large models, and scalable graph neural network computing frameworks, aiming to improve system performance and usability.",
     "research_interests": [
       "distributed LLM training and inference",
       "LLM algorithm-system co-design",
