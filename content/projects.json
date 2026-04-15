@@ -16,22 +16,6 @@
     "tags": ["llm", "training", "distributed-systems", "hopper"]
   },
   {
-    "name": "Megatron-LM",
-    "slug": "megatron-lm",
-    "title": "Megatron-LM",
-    "icon": "Meg",
-    "category": "Infrastructure",
-    "status": "Active",
-    "summary": "Distributed LLM training framework integration, benchmark experiments, and system optimization.",
-    "subtitle": "",
-    "url": "https://github.com/USTC-MLSys/Megatron-LM",
-    "description": "",
-    "homepage": "",
-    "language": "Python",
-    "topics": [],
-    "tags": ["llm", "training", "distributed-systems", "nvidia"]
-  },
-  {
     "name": "Adacluster",
     "slug": "adacluster",
     "title": "Adacluster",
