@@ -1,0 +1,45 @@
+name: Sync GitHub org repositories
+
+on:
+  schedule:
+    - cron: '0 2 * * *'   # daily at 02:00 UTC
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: python -m pip install --upgrade pip requests
+
+      - name: Fetch organization repositories
+        env:
+          ORG_TOKEN: ${{ secrets.ORG_TOKEN }}
+        run: |
+          # ORG_TOKEN is optional: if provided it will be used to access private repos
+          python tools/fetch_org_repos.py --org USTC-MLSys --output content/projects.json --token "${ORG_TOKEN}"
+
+      - name: Commit and push changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          if git diff --quiet --exit-code; then
+            echo "No changes to commit"
+          else
+            git add content/projects.json
+            git commit -m "chore: update content/projects.json from USTC-MLSys (automated)"
+            git push
+          fi

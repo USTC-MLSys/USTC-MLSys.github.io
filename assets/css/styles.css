@@ -1044,6 +1044,33 @@ button {
   overflow: hidden;
 }
 
+/* Project icon badge */
+.project-card__icon {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.75rem;
+  background: rgba(15, 139, 141, 0.12);
+  flex-shrink: 0;
+}
+
+.project-card__icon svg {
+  width: 1.6rem;
+  height: 1.6rem;
+  color: var(--teal);
+}
+
+.project-card__icon--text {
+  font-family: var(--serif);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--teal);
+  letter-spacing: 0.04em;
+}
+
 /* 当卡片包含媒体时，将布局改为两列：内容在左，图片在右 */
 .project-card--has-media {
   grid-template-columns: 1fr minmax(180px, 28%);

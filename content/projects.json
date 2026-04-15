@@ -1,2 +1,50 @@
 [
+  {
+    "name": "TWIST",
+    "slug": "twist",
+    "title": "TWIST",
+    "icon": "TWIST",
+    "category": "Training",
+    "status": "Active",
+    "summary": "High-Efficiency LLM Training System via Strand Interleaving on NVIDIA Hopper GPUs.",
+    "subtitle": "",
+    "url": "https://github.com/USTC-MLSys/TWIST",
+    "description": "High Efficient LLM Training System that Overlaps Communication via Strand Interleaving",
+    "homepage": "",
+    "language": "Python",
+    "topics": [],
+    "tags": ["llm", "training", "distributed-systems", "hopper"]
+  },
+  {
+    "name": "Megatron-LM",
+    "slug": "megatron-lm",
+    "title": "Megatron-LM",
+    "icon": "Meg",
+    "category": "Infrastructure",
+    "status": "Active",
+    "summary": "Distributed LLM training framework integration, benchmark experiments, and system optimization.",
+    "subtitle": "",
+    "url": "https://github.com/USTC-MLSys/Megatron-LM",
+    "description": "",
+    "homepage": "",
+    "language": "Python",
+    "topics": [],
+    "tags": ["llm", "training", "distributed-systems", "nvidia"]
+  },
+  {
+    "name": "Adacluster",
+    "slug": "adacluster",
+    "title": "Adacluster",
+    "icon": "Ada",
+    "category": "Systems",
+    "status": "Active",
+    "summary": "Adaptive clustering system for large-scale ML workloads with dynamic resource scheduling.",
+    "subtitle": "",
+    "url": "https://github.com/USTC-MLSys/Adacluster",
+    "description": "",
+    "homepage": "",
+    "language": "Python",
+    "topics": [],
+    "tags": ["ml-systems", "scheduling", "resource-management"]
+  }
 ]

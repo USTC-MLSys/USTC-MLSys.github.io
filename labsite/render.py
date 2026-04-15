@@ -1015,27 +1015,64 @@ class SiteRenderer:
         """
 
     def render_project_card(self, project: dict[str, Any], compact: bool = False) -> str:
-        tokens = [slug_token(project["category"]), slug_token(project["status"])]
-        tokens.extend(slug_token(tag) for tag in project.get("tags", []))
-        classes = join_classes("project-card", f"project-card--{project.get('tone', 'teal')}", "project-card--compact" if compact else "")
-        metrics = render_metric_items(project.get("metrics", [])[:2] if compact else project.get("metrics", []))
-        metrics_html = f'<div class="metric-strip">{metrics}</div>' if metrics else ""
-        actions = render_action_links(self.base_path, project.get('links', {}), compact=True)
-        actions_html = f'<div class="card-actions">{actions}</div>' if actions else ""
-        return f"""
-        <article class="{classes}" data-reveal data-filter-item data-filter-tags="{' '.join(tokens)}">
-          <div class="card-kicker">
-            <span>{h(project['category'])}</span>
-            <span>{h(project['status'])}</span>
-          </div>
-          <h3 class="project-card__title"><a href="{resolve_url(self.base_path, f"projects/{project['slug']}/")}">{h(project['title'])}</a></h3>
-          <p class="project-card__subtitle">{h(project['subtitle'])}</p>
-          <p class="project-card__summary">{h(project['summary'])}</p>
-          <div class="chip-row">{render_tag_list(project['tags'][:4])}</div>
-          {metrics_html}
-          {actions_html}
-        </article>
-        """
+      # Build filter tokens defensively (category/status may be missing)
+      tokens: list[str] = []
+      if project.get("category"):
+        tokens.append(slug_token(project.get("category")))
+      if project.get("status"):
+        tokens.append(slug_token(project.get("status")))
+      tokens.extend(slug_token(tag) for tag in project.get("tags", []))
+
+      classes = join_classes("project-card", f"project-card--{project.get('tone', 'teal')}", "project-card--compact" if compact else "")
+      metrics = render_metric_items(project.get("metrics", [])[:2] if compact else project.get("metrics", []))
+      metrics_html = f'<div class="metric-strip">{metrics}</div>' if metrics else ""
+      # Do not render a separate GitHub action button; the card title
+      # already links to the repository. Keep other action links (demo/docs/etc.).
+      links_for_actions = dict(project.get('links', {}) or {})
+      links_for_actions.pop('github', None)
+      actions = render_action_links(self.base_path, links_for_actions, compact=True)
+      actions_html = f'<div class="card-actions">{actions}</div>' if actions else ""
+
+      # Determine external URL to jump to when clicking the card (prefer GitHub link)
+      external_url = project.get('links', {}).get('github') or project.get('url') or ''
+      # build kicker HTML only if category/status exist
+      kicker_html = ""
+      if project.get('category') or project.get('status'):
+        kicker_parts = []
+        if project.get('category'):
+          kicker_parts.append(f"<span>{h(project['category'])}</span>")
+        if project.get('status'):
+          kicker_parts.append(f"<span>{h(project['status'])}</span>")
+        kicker_html = f"<div class=\"card-kicker\">{''.join(kicker_parts)}</div>"
+
+      # Icon: render as badge or skip if absent
+      icon_html = ""
+      icon = project.get("icon", "")
+      if icon:
+        # SVG icon badge if icon looks like an SVG string, otherwise text badge
+        if icon.startswith("<svg") or icon.startswith("<path"):
+          icon_html = f'<div class="project-card__icon">{icon}</div>'
+        else:
+          icon_html = f'<div class="project-card__icon project-card__icon--text" aria-hidden="true">{h(icon)}</div>'
+
+      # Title link: if external_url present use it, otherwise fall back to internal project detail
+      if external_url:
+        title_href = external_url
+      else:
+        title_href = resolve_url(self.base_path, f"projects/{project.get('slug','')}/")
+
+      return f"""
+      <article class="{classes}" data-reveal data-filter-item data-filter-tags="{' '.join([t for t in tokens if t])}">
+        {icon_html}
+        {kicker_html}
+        <h3 class="project-card__title"><a href="{h(title_href)}"{external_attrs(h(title_href))}>{h(project.get('title') or '')}</a></h3>
+        <p class="project-card__subtitle">{h(project.get('subtitle') or '')}</p>
+        <p class="project-card__summary">{h(project.get('summary') or '')}</p>
+        <div class="chip-row">{render_tag_list(project.get('tags', [])[:4])}</div>
+        {metrics_html}
+        {actions_html}
+      </article>
+      """
 
     def render_blog_card(self, post: dict[str, Any], compact: bool = False) -> str:
         tokens = [slug_token(tag) for tag in post.get("tags", [])]
