@@ -1322,6 +1322,23 @@ button {
 .detail-sidebar {
   display: grid;
   gap: 1rem;
+  height: fit-content;
+  max-height: calc(100vh - 6.5rem);
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+
+/* JS-sticky 模式：侧边栏被固定在 header 下方 */
+.detail-sidebar--sticky {
+  position: fixed;
+  top: 5.5rem;
+  width: inherit;
+  max-height: calc(100vh - 6.5rem);
+}
+
+/* grid 子项的宽度在 sticky 模式下需要固定 */
+.detail-layout {
+  align-items: start;
 }
 
 .detail-sidebar__panel {
@@ -1358,6 +1375,127 @@ button {
 .prose-block + .prose-block {
   margin-top: 1.4rem;
 }
+
+/* === Markdown body (rendered from .md files) === */
+.md-body {
+  line-height: 1.75;
+  color: var(--ink);
+}
+
+.md-body h1,
+.md-body h2,
+.md-body h3,
+.md-body h4 {
+  font-family: var(--serif);
+  margin: 2rem 0 0.65rem;
+  line-height: 1.25;
+  scroll-margin-top: 6rem;
+}
+
+.md-body h1 { font-size: 1.7rem; }
+.md-body h2 { font-size: 1.3rem; border-bottom: 1px solid rgba(18,20,23,0.09); padding-bottom: 0.35rem; }
+.md-body h3 { font-size: 1.08rem; }
+
+.md-body p {
+  margin: 0.8rem 0;
+}
+
+.md-body a {
+  color: var(--teal);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.md-body ul,
+.md-body ol {
+  padding-left: 1.5rem;
+  margin: 0.8rem 0;
+}
+
+.md-body li {
+  margin: 0.35rem 0;
+}
+
+.md-body strong {
+  font-weight: 650;
+}
+
+.md-body blockquote {
+  border-left: 3px solid var(--teal);
+  margin: 1.2rem 0;
+  padding: 0.6rem 1rem;
+  background: rgba(15, 139, 141, 0.06);
+  border-radius: 0 0.5rem 0.5rem 0;
+  color: var(--muted);
+  font-style: italic;
+}
+
+.md-body code {
+  font-family: var(--mono);
+  font-size: 0.82em;
+  background: rgba(18, 20, 23, 0.07);
+  padding: 0.15em 0.4em;
+  border-radius: 0.3em;
+}
+
+.md-body pre {
+  background: rgba(18, 20, 23, 0.05);
+  border: 1px solid rgba(18, 20, 23, 0.1);
+  border-radius: 0.75rem;
+  padding: 1rem 1.2rem;
+  overflow-x: auto;
+  margin: 1.2rem 0;
+}
+
+.md-body pre code {
+  background: none;
+  padding: 0;
+  font-size: 0.83rem;
+  line-height: 1.6;
+}
+
+.md-body table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+  margin: 1.2rem 0;
+  border-radius: 0.6rem;
+  overflow: hidden;
+  border: 1px solid rgba(18, 20, 23, 0.12);
+}
+
+.md-body th {
+  background: rgba(18, 20, 23, 0.05);
+  font-weight: 600;
+  text-align: left;
+  padding: 0.5rem 0.8rem;
+  border-bottom: 1px solid rgba(18, 20, 23, 0.12);
+}
+
+.md-body td {
+  padding: 0.45rem 0.8rem;
+  border-bottom: 1px solid rgba(18, 20, 23, 0.06);
+}
+
+.md-body tr:last-child td {
+  border-bottom: none;
+}
+
+.md-body img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 0.75rem;
+  margin: 1rem 0;
+  display: block;
+}
+
+.md-body hr {
+  border: none;
+  border-top: 1px solid rgba(18, 20, 23, 0.1);
+  margin: 2rem 0;
+}
+
+
 
 .detail-prose p,
 .detail-prose ul,

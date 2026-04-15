@@ -1,9 +1,16 @@
 from __future__ import annotations
 
+import os
+import re
 from dataclasses import dataclass
 from datetime import datetime
 from html import escape
+from pathlib import Path
 from typing import Any
+
+import markdown as _md_lib
+from markdown.extensions.tables import TableExtension
+from markdown.extensions.fenced_code import FencedCodeExtension
 
 
 @dataclass
@@ -106,6 +113,100 @@ def render_metric_items(metrics: list[dict[str, str]], item_class: str = "metric
             """
         )
     return "".join(parts)
+
+
+# ---------------------------------------------------------------------------
+# Markdown helpers
+# ---------------------------------------------------------------------------
+
+def _slugify(text: str) -> str:
+    """Convert heading text to a URL-safe anchor id."""
+    text = text.lower()
+    text = re.sub(r'[^\w\s-]', '', text)
+    text = re.sub(r'[\s_]+', '-', text.strip())
+    return text
+
+
+def render_markdown_file(md_path: str, base_path: str, site_root: str) -> tuple[str, list[tuple[str, str]]]:
+    """
+    Read a Markdown file, render it to HTML with tables + fenced-code support,
+    rewrite relative image src attributes to absolute site paths,
+    and return (html_string, toc_list).
+
+    toc_list is a list of (anchor_id, heading_text) for h2 and h3 tags.
+    site_root: absolute filesystem path of the project root (where blog/ lives).
+    base_path: URL base path (e.g. '/' or '/USTC-MLSys/').
+    """
+    abs_path = Path(site_root) / md_path
+    if not abs_path.exists():
+        return f"<p><em>Markdown file not found: {md_path}</em></p>", []
+
+    raw = abs_path.read_text(encoding="utf-8")
+
+    # The md file dir relative to site root — used to resolve relative image paths
+    md_dir = abs_path.parent.relative_to(Path(site_root))  # e.g. blog/TWIST
+
+    md = _md_lib.Markdown(extensions=[TableExtension(), FencedCodeExtension()])
+    html = md.convert(raw)
+
+    # -----------------------------------------------------------------------
+    # Rewrite image src: relative → absolute site URL
+    # e.g.  src="image/foo.svg"  →  src="/blog/TWIST/image/foo.svg"
+    # -----------------------------------------------------------------------
+    def fix_img_src(m: re.Match) -> str:
+        src = m.group(1)
+        if src.startswith(('http://', 'https://', '//', '/')):
+            return m.group(0)  # already absolute
+        # strip Notion-style encoded folder prefix if present
+        # e.g. "Introducing%20TWIST%20.../Dhellam_Overview.svg" → just the filename
+        # We look for the actual file inside the md_dir tree
+        filename = Path(src).name
+        # Search for the file relative to md_dir
+        abs_img = Path(site_root) / md_dir / src
+        if abs_img.exists():
+            rel = (md_dir / src).as_posix()
+        else:
+            # fallback: search image/ subfolder
+            abs_img2 = Path(site_root) / md_dir / "image" / filename
+            if abs_img2.exists():
+                rel = (md_dir / "image" / filename).as_posix()
+            else:
+                rel = (md_dir / src).as_posix()
+        # build site URL
+        if base_path and base_path != '/':
+            url = base_path.rstrip('/') + '/' + rel.lstrip('/')
+        else:
+            url = '/' + rel.lstrip('/')
+        return f'src="{url}"'
+
+    html = re.sub(r'src="([^"]+)"', fix_img_src, html)
+
+    # -----------------------------------------------------------------------
+    # Add id attributes to h2/h3 headings, collect TOC
+    # -----------------------------------------------------------------------
+    toc: list[tuple[str, str]] = []
+    used_ids: dict[str, int] = {}
+
+    def add_heading_id(m: re.Match) -> str:
+        level = m.group(1)
+        inner = m.group(2)
+        # strip any inline tags to get plain text
+        plain = re.sub(r'<[^>]+>', '', inner)
+        base_id = _slugify(plain)
+        if not base_id:
+            return m.group(0)
+        count = used_ids.get(base_id, 0)
+        used_ids[base_id] = count + 1
+        anchor = base_id if count == 0 else f"{base_id}-{count}"
+        if level in ('2', '3'):
+            toc.append((anchor, plain))
+        return f'<h{level} id="{anchor}">{inner}</h{level}>'
+
+    html = re.sub(r'<h([23])>(.*?)</h\1>', add_heading_id, html, flags=re.DOTALL)
+
+    # Wrap in detail-prose-compatible class
+    html = f'<div class="md-body">{html}</div>'
+    return html, toc
 
 
 def render_content_blocks(base_path: str, blocks: list[dict[str, Any]]) -> str:
@@ -680,10 +781,10 @@ class SiteRenderer:
             )}
             <section class="section detail-section">
               <div class="shell detail-layout">
-                <article class="detail-prose" data-reveal>
+                <article class="detail-prose">
                   {render_content_blocks(self.base_path, project.get('content', []))}
                 </article>
-                <aside class="detail-sidebar" data-reveal>
+                <aside class="detail-sidebar">
                   {''.join(sidebar_panels)}
                 </aside>
               </div>
@@ -732,9 +833,7 @@ class SiteRenderer:
         pages = []
         for post in self.blog:
             side_links = render_action_links(self.base_path, post.get("links", {}), compact=False)
-            toc = self.extract_toc(post.get("content", []))
-            toc_html = self.render_toc(toc)
-            
+
             # Build meta with Author first
             meta_parts = []
             if post.get("author"):
@@ -742,20 +841,30 @@ class SiteRenderer:
             if post.get("date"):
                 meta_parts.append(format_date(post["date"]))
             meta = "        ".join(meta_parts) if meta_parts else ""
-            
-            # Add IDs to content blocks for TOC linking
-            content_with_ids = []
-            for block in post.get("content", []):
-                block_copy = dict(block)
-                if block.get("type") in ("paragraph", "list", "image") and block.get("title"):
-                    anchor = block["title"].lower().replace(" ", "-").replace("/", "")
-                    block_copy["id"] = anchor
-                content_with_ids.append(block_copy)
-            
+
+            # --- Markdown file path takes priority over JSON content blocks ---
+            md_file = post.get("markdown_file", "")
+            if md_file:
+                site_root = str(Path(__file__).parent.parent)
+                prose_html, toc = render_markdown_file(md_file, self.base_path, site_root)
+                toc_html = self.render_toc(toc)
+                prose_body = prose_html
+            else:
+                toc = self.extract_toc(post.get("content", []))
+                toc_html = self.render_toc(toc)
+                content_with_ids = []
+                for block in post.get("content", []):
+                    block_copy = dict(block)
+                    if block.get("type") in ("paragraph", "list", "image") and block.get("title"):
+                        anchor = block["title"].lower().replace(" ", "-").replace("/", "")
+                        block_copy["id"] = anchor
+                    content_with_ids.append(block_copy)
+                prose_body = render_content_blocks(self.base_path, content_with_ids)
+
             sidebar_panels: list[str] = []
             if toc_html:
                 sidebar_panels.append(toc_html)
-            
+
             body = f"""
             {self.render_detail_intro(
                 title=post['title'],
@@ -767,10 +876,10 @@ class SiteRenderer:
             )}
             <section class="section detail-section">
               <div class="shell detail-layout">
-                <article class="detail-prose" data-reveal>
-                  {render_content_blocks(self.base_path, content_with_ids)}
+                <article class="detail-prose">
+                  {prose_body}
                 </article>
-                <aside class="detail-sidebar" data-reveal>
+                <aside class="detail-sidebar">
                   {''.join(sidebar_panels)}
                 </aside>
               </div>
@@ -819,7 +928,7 @@ class SiteRenderer:
             )}
             <section class="section detail-section">
               <div class="shell detail-layout">
-                <article class="detail-prose" data-reveal>
+                <article class="detail-prose">
                   <section class="prose-block">
                     <h2 class="prose__heading">Authors</h2>
                     <p>{h(', '.join(pub['authors']))}</p>

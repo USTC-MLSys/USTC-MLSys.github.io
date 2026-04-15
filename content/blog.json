@@ -27,7 +27,8 @@
     ],
     "links": {},
     "page_label": "Blog",
-    "author": "Lab Member",
+    "author": "The TWIST Team",
+    "markdown_file": "blog/TWIST/blog.md",
     "content": [
       {
         "type": "paragraph",
@@ -47,21 +48,21 @@
       {
         "type": "image",
         "title": "Dhellam overview",
-        "src": "blog/TWIST/Dhellam_Overview.svg",
+        "src": "blog/TWIST/image/Dhellam_Overview.svg",
         "alt": "Dhellam overview figure used in the TWIST note.",
         "caption": "Overview figure from the TWIST material stored in the repository."
       },
       {
         "type": "image",
         "title": "Layer breakdown",
-        "src": "blog/TWIST/layer_breakdown.svg",
+        "src": "blog/TWIST/image/layer_breakdown.svg",
         "alt": "Layer breakdown figure for TWIST.",
         "caption": "The source SVG includes a single Transformer layer breakdown with TWIST compute and communication labels."
       },
       {
         "type": "image",
         "title": "MFU comparison",
-        "src": "blog/TWIST/mfu_comparison.svg",
+        "src": "blog/TWIST/image/mfu_comparison.svg",
         "alt": "End-to-end MFU comparison for TWIST.",
         "caption": "The source SVG includes the title \"End-to-End MFU Comparison on H200 (Qwen3-14B-like)\" and compares Megatron-LM with TWIST."
       },

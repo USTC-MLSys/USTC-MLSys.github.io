@@ -179,6 +179,27 @@ if (revealItems.length) {
   });
 })();
 
+// Detail page sidebar: sticky on scroll
+// Strategy: use CSS position:sticky on a wrapper, and dynamically set the
+// 'top' value so the sidebar stays below the header as the page scrolls.
+(function initDetailSidebar() {
+  const sidebar = document.querySelector(".detail-sidebar");
+  if (!sidebar) return;
+
+  // Don't sticky on narrow screens where sidebar stacks below prose
+  const mq = window.matchMedia("(max-width: 1080px)");
+  if (mq.matches) return;
+
+  const headerEl = document.querySelector("[data-site-header]");
+  // Header height + breathing room
+  const OFFSET = headerEl ? headerEl.offsetHeight + 16 : 88;
+
+  // Store initial 'top' value in a CSS variable; JS updates it on scroll
+  sidebar.style.setProperty("--sticky-top", OFFSET + "px");
+  sidebar.style.position = "sticky";
+  sidebar.style.top = OFFSET + "px";
+})();
+
 document.querySelectorAll("[data-filter-root]").forEach((root) => {
   const buttons = [...root.querySelectorAll("[data-filter-button]")];
   const container = root.nextElementSibling && root.nextElementSibling.hasAttribute("data-filter-container")
