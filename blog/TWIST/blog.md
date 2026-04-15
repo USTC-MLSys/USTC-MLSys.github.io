@@ -197,7 +197,7 @@ Future work includes:
 3. **Testing wider models** such as LLaMA3-70B and K2-V2, where higher per-GPU compute could increase MFU headroom.
 4. **Extending to MoE + EP on Hopper**, where NCCL EP communication may create additional overlap opportunities.
 
-The complete codebase is open-source at [github.com/DHelix-AI/dhelix](https://github.com/DHelix-AI/dhelix).
+The complete codebase is open-source at [github.com/USTC-MLSys/TWIST](ttps://github.com/USTC-MLSys/TWIST).
 
 ---
 

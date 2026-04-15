@@ -3,10 +3,26 @@
     "name": "Cheng Li",
     "role": "Principal Investigator",
     "group": "faculty",
-    "bio": "Professor at the University of Science and Technology of China. His public homepage lists parallel and distributed intelligent computing and storage systems as his main research fields, with a data-centric perspective.",
+    "bio": "Professor at the University of Science and Technology of China. Parallel and distributed intelligent computing and storage systems are his main research fields, with a data-centric perspective.",
     "research_interests": ["parallel computing", "distributed intelligent computing", "storage systems", "data-centric systems"],
     "homepage": "https://mr-cheng-li.github.io/",
     "github": "https://github.com/mr-cheng-li",
     "email": "chengli7@ustc.edu.cn"
+  },
+  {
+    "name": "Youhui Bai",
+    "role": "Investigator",
+    "group": "faculty",
+    "bio": "Associate Professor at the School of Computer Science, University of Science and Technology of China. Research focuses on distributed LLM training and inference systems, algorithm–system co-design for large models, and scalable graph neural network computing frameworks, aiming to improve system performance and usability.",
+    "research_interests": [
+      "distributed LLM training and inference",
+      "LLM algorithm-system co-design",
+      "large-scale GNN computing frameworks",
+      "parallel and distributed systems",
+      "data management"
+    ],
+    "homepage": "https://youhuibai.github.io/",
+    "github": "https://github.com/youhuibai",
+    "email": "byh0912@mail.ustc.edu.cn"
   }
 ]
