@@ -1,9 +1,41 @@
 [
   {
+    "slug": "autoccl-nsdi-2025",
+    "title": "AutoCCL: Automated Collective Communication Tuning for Accelerating Distributed and Parallel DNN Training",
+    "summary": "AutoCCL automates collective communication tuning to accelerate distributed and parallel DNN training.",
+    "abstract": "The collective communication libraries are pivotal in optimizing the performance of distributed and parallel deep neural network (DNN) training. Most network optimizations are under the assumption of fixed collective communication algorithms and parameters, limiting the potential performance gains. AutoCCL proposes an automated framework that tunes collective communication configurations to significantly improve training throughput.",
+    "authors": [
+      "Guanbin Xu",
+      "Zhihao Le",
+      "Yinhe Chen",
+      "Zhiqi Lin",
+      "Zewen Jin",
+      "Youshan Miao",
+      "Cheng Li"
+    ],
+    "venue": "NSDI 2025",
+    "month": "April",
+    "year": 2025,
+    "type": "conference",
+    "research_area": "distributed machine learning",
+    "tags": ["collective communication", "DNN training", "distributed systems", "auto-tuning"],
+    "award": "",
+    "project_slug": "twist",
+    "pdf_url": "https://www.usenix.org/system/files/nsdi25-xu-guanbin.pdf",
+    "code_url": "https://github.com/gbxu/autoccl",
+    "content": [
+      {
+        "type": "paragraph",
+        "title": "Abstract",
+        "text": "The collective communication libraries are pivotal in optimizing the performance of distributed and parallel deep neural network (DNN) training. AutoCCL proposes an automated framework that tunes collective communication configurations to significantly improve training throughput."
+      }
+    ]
+  },
+  {
     "slug": "dhellam-iccd-2025",
     "title": "DHeLlam: General-Purpose, Automatic Micro-Batch Co-Execution for Distributed LLM Training",
-    "summary": "ICCD 2025 Best Paper. This paper presents DHeLlam, a system for automatic micro-batch co-execution in distributed LLM training.",
-    "abstract": "According to public conference and university news sources, DHeLlam targets communication bottlenecks in distributed LLM training and introduces automatic micro-batch co-execution to improve overall training efficiency.",
+    "summary": "ICCD 2025 Best Paper. DHeLlam introduces automatic micro-batch co-execution to reduce communication bottlenecks in distributed LLM training.",
+    "abstract": "DHeLlam targets communication bottlenecks in distributed LLM training and introduces automatic micro-batch co-execution to improve overall training efficiency.",
     "authors": [
       "Haiquan Wang",
       "Chaoyi Ruan",
@@ -18,11 +50,7 @@
     "year": 2025,
     "type": "conference",
     "research_area": "parallel and distributed intelligent computing",
-    "tags": [
-      "LLM training",
-      "distributed systems",
-      "micro-batch co-execution"
-    ],
+    "tags": ["LLM training", "distributed systems", "micro-batch co-execution"],
     "award": "Best Publication Award",
     "project_slug": "twist",
     "pdf_url": "https://ieeexplore.ieee.org/document/11310905",
@@ -31,7 +59,593 @@
       {
         "type": "paragraph",
         "title": "Abstract",
-        "text": "According to public conference and university news sources, DHeLlam targets communication bottlenecks in distributed LLM training and introduces automatic micro-batch co-execution to improve overall training efficiency."
+        "text": "DHeLlam targets communication bottlenecks in distributed LLM training and introduces automatic micro-batch co-execution to improve overall training efficiency."
+      }
+    ]
+  },
+  {
+    "slug": "mantle-sosp-2025",
+    "title": "Mantle: Efficient Hierarchical Metadata Management for Cloud Object Storage Services",
+    "summary": "Mantle proposes a two-layer metadata architecture for cloud object storage, enabling scalable hierarchical namespace management.",
+    "abstract": "Mantle is a new COSS metadata service for modern cloud workloads. It adopts a two-layer architecture: a scalable, sharded database (TafDB) shared across namespaces and a per-namespace IndexNode that caches basic directory metadata, enabling efficient single-RPC path queries and scalable metadata management.",
+    "authors": [
+      "Jiahao Li",
+      "Yiduo Wang",
+      "Cheng Li",
+      "Kang Chen",
+      "Baidu Canghaixing Storage Team"
+    ],
+    "venue": "SOSP 2025",
+    "month": "October",
+    "year": 2025,
+    "type": "conference",
+    "research_area": "storage systems",
+    "tags": ["cloud storage", "metadata management", "distributed file systems", "object storage"],
+    "award": "",
+    "project_slug": "",
+    "pdf_url": "https://madsys.cs.tsinghua.edu.cn/publication/mantle-efficient-hierarchical-metadata-management-for-cloud-object-storage-services/SOSP25-Li.pdf",
+    "code_url": "",
+    "content": [
+      {
+        "type": "paragraph",
+        "title": "Abstract",
+        "text": "Mantle is a new COSS metadata service for modern cloud workloads. It adopts a two-layer architecture (TafDB + IndexNode) that enables efficient single-RPC path queries and scalable metadata management for large-scale cloud object storage services."
+      }
+    ]
+  },
+  {
+    "slug": "perseus-pacmmod-2025",
+    "title": "Perseus: Achieving Strong Consistency and High Data Freshness for Scalable Geo-distributed HTAP",
+    "summary": "Perseus is a scalable HTAP database that enforces strong consistency for both transactions and analytical queries across geo-distributed deployments.",
+    "abstract": "The rise of global data-driven applications has made geo-distributed hybrid transactional and analytical processing (HTAP) databases increasingly desirable. Existing distributed HTAP systems either provide weak consistency or incur bad data freshness when deployed geographically. Perseus achieves strong consistency and high data freshness simultaneously.",
+    "authors": [
+      "Haoze Song",
+      "Xusheng Chen",
+      "Ruijie Gong",
+      "Zekai Sun",
+      "Tianxiang Shen",
+      "Cheng Li",
+      "Hao Feng",
+      "Sen Wang",
+      "Heming Cui"
+    ],
+    "venue": "VLDB 2025 (PACMMOD)",
+    "month": "",
+    "year": 2025,
+    "type": "journal",
+    "research_area": "distributed databases",
+    "tags": ["HTAP", "geo-distributed", "consistency", "database"],
+    "award": "",
+    "project_slug": "",
+    "pdf_url": "https://dl.acm.org/doi/epdf/10.1145/3749178",
+    "code_url": "",
+    "content": [
+      {
+        "type": "paragraph",
+        "title": "Abstract",
+        "text": "Perseus is a scalable HTAP database that enforces strong consistency for both transactions and analytical queries across geo-distributed deployments, addressing the tension between consistency and freshness in distributed HTAP systems."
+      }
+    ]
+  },
+  {
+    "slug": "glpilot-tpds-2025",
+    "title": "GLPilot: Efficient Distributed GNN Training With Learnable Embeddings",
+    "summary": "GLPilot introduces a staleness-bounded embedding buffering mechanism to reduce remote fetches in distributed GNN training with learnable vertex embeddings.",
+    "abstract": "Graph Neural Networks (GNNs) with learnable vertex embeddings enable models to infer rich, task-specific representations even when vertex features are sparse, noisy, or missing. GLPilot introduces a staleness-bounded embedding buffering mechanism to reduce remote fetches and a local gradient aggregation technique to minimize redundant communications during distributed training.",
+    "authors": [
+      "Chengru Yang",
+      "Chaoyi Ruan",
+      "Chengjie Tang",
+      "Ping Gong",
+      "Shiyi Wang",
+      "Xiang Song",
+      "Cheng Li"
+    ],
+    "venue": "IEEE TPDS 2025",
+    "month": "February",
+    "year": 2025,
+    "type": "journal",
+    "research_area": "graph neural networks",
+    "tags": ["GNN", "distributed training", "graph learning", "embeddings"],
+    "award": "",
+    "project_slug": "",
+    "pdf_url": "https://ieeexplore.ieee.org/document/11266915",
+    "code_url": "",
+    "content": [
+      {
+        "type": "paragraph",
+        "title": "Abstract",
+        "text": "GLPilot introduces a staleness-bounded embedding buffering mechanism to reduce remote fetches and a local gradient aggregation technique to minimize redundant communications, enabling efficient distributed GNN training with learnable vertex embeddings."
+      }
+    ]
+  },
+  {
+    "slug": "nnscaler-osdi-2024",
+    "title": "nnScaler: Constraint-Guided Parallelization Plan Generation for Deep Learning Training",
+    "summary": "nnScaler generates efficient parallelization plans for DNN training via three primitives that capture any parallel plan's model transformation and spatiotemporal scheduling.",
+    "abstract": "nnScaler advocates a more general approach enabling domain experts to construct their own search spaces via three primitives (op-trans, op-assign, op-order) that capture model transformations and spatiotemporal scheduling of transformed models for any parallel plan. Compared to DeepSpeed, Megatron-LM, and Alpa, nnScaler achieves up to 3.5x speedup on popular DNN models.",
+    "authors": [
+      "Zhiqi Lin",
+      "Youshan Miao",
+      "Quanlu Zhang",
+      "Fan Yang",
+      "Yi Zhu",
+      "Cheng Li",
+      "Saeed Maleki",
+      "Xu Cao",
+      "Ning Shang",
+      "Yilei Yang",
+      "Weijiang Xu",
+      "Mao Yang",
+      "Lintao Zhang",
+      "Lidong Zhou"
+    ],
+    "venue": "OSDI 2024",
+    "month": "July",
+    "year": 2024,
+    "type": "conference",
+    "research_area": "distributed machine learning",
+    "tags": ["deep learning", "parallelization", "DNN training", "distributed systems"],
+    "award": "",
+    "project_slug": "twist",
+    "pdf_url": "https://www.usenix.org/system/files/osdi24-lin-zhiqi.pdf",
+    "code_url": "",
+    "content": [
+      {
+        "type": "paragraph",
+        "title": "Abstract",
+        "text": "nnScaler enables domain experts to construct custom search spaces for parallel DNN training via three primitives, achieving up to 3.5x speedup over existing solutions like DeepSpeed, Megatron-LM, and Alpa."
+      }
+    ]
+  },
+  {
+    "slug": "vptq-emnlp-2024",
+    "title": "VPTQ: Extreme Low-bit Vector Post-Training Quantization for Large Language Models",
+    "summary": "VPTQ leverages vector quantization with second-order optimization to achieve extreme low-bit (1–4 bit) compression of LLMs while maintaining high accuracy.",
+    "abstract": "VPTQ introduces Vector Post-Training Quantization for extremely low-bit quantization of LLMs. It uses Second-Order Optimization to formulate the LLM vector quantization problem and supports residual and outlier quantization to achieve near-lossless compression at 1-4 bits.",
+    "authors": [
+      "Yifei Liu",
+      "Jicheng Wen",
+      "Yang Wang",
+      "Shengyu Ye",
+      "Li Lyna Zhang",
+      "Ting Cao",
+      "Cheng Li",
+      "Mao Yang"
+    ],
+    "venue": "EMNLP 2024",
+    "month": "November",
+    "year": 2024,
+    "type": "conference",
+    "research_area": "large language models",
+    "tags": ["LLM", "quantization", "model compression", "vector quantization"],
+    "award": "",
+    "project_slug": "",
+    "pdf_url": "https://arxiv.org/pdf/2409.17066v1",
+    "code_url": "https://github.com/microsoft/VPTQ",
+    "content": [
+      {
+        "type": "paragraph",
+        "title": "Abstract",
+        "text": "VPTQ uses Second-Order Optimization and vector quantization to achieve extreme low-bit (1–4 bit) compression of LLMs, enabling near-lossless quantization and fast inference with significantly reduced memory footprint."
+      }
+    ]
+  },
+  {
+    "slug": "polybase-pvldb-2024",
+    "title": "PolyBase: Adapting to Data Affinity Changes in Geo-Replicated Database via Row-Level Consensus-Group Affiliation Re-Assignment",
+    "summary": "PolyBase addresses data affinity misalignment in geo-replicated databases by enabling row-level Paxos-group re-assignment, significantly reducing wide-area round trips.",
+    "abstract": "PolyBase introduces a pioneering architecture to address misalignment in geo-replicated databases, leveraging Paxos-based log replication mechanisms to enable row-level consensus-group affiliation re-assignment. This significantly reduces wide-area RTTs without compromising consistency or reliability.",
+    "authors": [
+      "Chaoyi Ruan",
+      "Yingqiang Zhang",
+      "Juncheng Zhang",
+      "Cheng Li",
+      "Xiaosong Ma",
+      "Hao Chen",
+      "Jie Zhou",
+      "Feifei Li",
+      "Xinjun Yang"
+    ],
+    "venue": "PVLDB 2024",
+    "month": "November",
+    "year": 2024,
+    "type": "journal",
+    "research_area": "distributed databases",
+    "tags": ["geo-replication", "database", "Paxos", "consistency"],
+    "award": "",
+    "project_slug": "",
+    "pdf_url": "https://www.vldb.org/pvldb/vol18/p702-ruan.pdf",
+    "code_url": "",
+    "content": [
+      {
+        "type": "paragraph",
+        "title": "Abstract",
+        "text": "PolyBase introduces row-level Paxos-group affiliation re-assignment to adapt to data affinity changes in geo-replicated databases, significantly reducing wide-area RTTs without compromising consistency."
+      }
+    ]
+  },
+  {
+    "slug": "spfresh-sosp-2023",
+    "title": "SPFresh: Incremental In-Place Update for Billion-Scale Vector Search",
+    "summary": "SPFresh supports efficient in-place vector updates for billion-scale ANNS through the LIRE lightweight incremental rebalancing protocol.",
+    "abstract": "High-dimensional vector data approximate nearest neighbor search (ANNS) is widely used in information retrieval, question answering, and recommendation systems. SPFresh introduces LIRE, a lightweight incremental rebalancing protocol, enabling in-place vector updates that maintain search quality without costly full index rebuilds.",
+    "authors": [
+      "Yuming Xu",
+      "Hengyu Liang",
+      "Jin Li",
+      "Shuotao Xu",
+      "Qi Chen",
+      "Qianxi Zhang",
+      "Cheng Li",
+      "Ziyue Yang",
+      "Fan Yang",
+      "Yuqing Yang",
+      "Peng Cheng",
+      "Mao Yang"
+    ],
+    "venue": "SOSP 2023",
+    "month": "October",
+    "year": 2023,
+    "type": "conference",
+    "research_area": "storage systems",
+    "tags": ["vector search", "ANNS", "in-place update", "billion-scale"],
+    "award": "",
+    "project_slug": "",
+    "pdf_url": "https://arxiv.org/pdf/2410.14452v1",
+    "code_url": "",
+    "content": [
+      {
+        "type": "paragraph",
+        "title": "Abstract",
+        "text": "SPFresh introduces LIRE, a lightweight incremental rebalancing protocol for billion-scale vector search, enabling efficient in-place updates that maintain high search quality without full index rebuilds."
+      }
+    ]
+  },
+  {
+    "slug": "gsampler-sosp-2023",
+    "title": "gSampler: General and Efficient GPU-based Graph Sampling for Graph Learning",
+    "summary": "gSampler is a general GPU-based graph sampling framework using the ECSF model that unifies 15 popular graph sampling algorithms with high efficiency.",
+    "abstract": "gSampler conducts a comprehensive study on 15 popular graph sampling algorithms to motivate a general and efficient GPU-based graph sampling framework. It employs the Extract-Compute-Select-Finalize (ECSF) model for single-layer graph sampling and provides matrix-centric APIs that are user-friendly and intuitive.",
+    "authors": [
+      "Ping Gong",
+      "Renjie Liu",
+      "Zunyao Mao",
+      "Zhenkun Cai",
+      "Xiao Yan",
+      "Cheng Li",
+      "Minjie Wang",
+      "Zhuozhao Li"
+    ],
+    "venue": "SOSP 2023",
+    "month": "October",
+    "year": 2023,
+    "type": "conference",
+    "research_area": "graph neural networks",
+    "tags": ["graph sampling", "GPU", "graph learning", "GNN"],
+    "award": "",
+    "project_slug": "",
+    "pdf_url": "https://dl.acm.org/doi/10.1145/3600006.3613168",
+    "code_url": "https://github.com/gsampler9/gSampler",
+    "content": [
+      {
+        "type": "paragraph",
+        "title": "Abstract",
+        "text": "gSampler uses the ECSF model to provide a general and efficient GPU-based graph sampling framework, unifying 15 popular sampling algorithms with matrix-centric APIs and achieving significant speedups over CPU-based approaches."
+      }
+    ]
+  },
+  {
+    "slug": "frozenhot-eurosys-2023",
+    "title": "FrozenHot Cache: Rethinking Cache Management for Modern Hardware",
+    "summary": "FrozenHot improves cache scalability on modern multi-core hardware by separating a frozen hot segment that eliminates per-access synchronization overhead.",
+    "abstract": "Inspired by highly skewed data popularity and short-term hotspot stability in cache workloads, FrozenHot splits cache space into a frozen cache and a dynamic cache. The frozen cache serves hot objects with minimal latency by eliminating cache management locks, while the dynamic cache uses existing designs for workload adaptability.",
+    "authors": [
+      "Ziyue Qiu",
+      "Juncheng Yang",
+      "Juncheng Zhang",
+      "Cheng Li",
+      "Xiaosong Ma",
+      "Qi Chen",
+      "Mao Yang",
+      "Yinlong Xu"
+    ],
+    "venue": "EuroSys 2023",
+    "month": "May",
+    "year": 2023,
+    "type": "conference",
+    "research_area": "storage systems",
+    "tags": ["cache", "storage", "scalability", "multi-core"],
+    "award": "",
+    "project_slug": "",
+    "pdf_url": "https://junchengyang.com/publication/eurosys23-frozenHot.pdf",
+    "code_url": "https://github.com/ziyueqiu/FrozenHot",
+    "content": [
+      {
+        "type": "paragraph",
+        "title": "Abstract",
+        "text": "FrozenHot divides cache into a frozen segment (for hot objects, lock-free) and a dynamic segment (for adaptability), significantly improving cache throughput and scalability on modern multi-core hardware."
+      }
+    ]
+  },
+  {
+    "slug": "cfs-eurosys-2023",
+    "title": "CFS: Scaling Metadata Service for Distributed File System via Pruned Scope of Critical Sections",
+    "summary": "CFS builds a scalable, fully POSIX-compliant distributed file system by pruning critical sections to reduce locking overhead.",
+    "abstract": "CFS is a scalable, fully POSIX-compliant distributed file system that eliminates the metadata management bottleneck via pruning the scope of critical sections for reduced locking overhead, enabling high-throughput metadata operations.",
+    "authors": [
+      "Yiduo Wang",
+      "Yufei Wu",
+      "Cheng Li",
+      "Pengfei Zheng",
+      "Biao Cao",
+      "Yan Sun",
+      "Fei Zhou",
+      "Yinlong Xu",
+      "Yao Wang",
+      "Guangjun Xie"
+    ],
+    "venue": "EuroSys 2023",
+    "month": "May",
+    "year": 2023,
+    "type": "conference",
+    "research_area": "storage systems",
+    "tags": ["distributed file system", "metadata", "scalability", "POSIX"],
+    "award": "",
+    "project_slug": "",
+    "pdf_url": "https://dl.acm.org/doi/abs/10.1145/3552326.3587443",
+    "code_url": "",
+    "content": [
+      {
+        "type": "paragraph",
+        "title": "Abstract",
+        "text": "CFS scales distributed file system metadata service by pruning the scope of critical sections, eliminating the metadata management bottleneck while maintaining full POSIX compliance."
+      }
+    ]
+  },
+  {
+    "slug": "mpress-hpca-2023",
+    "title": "MPress: Democratizing Billion-Scale Model Training on Multi-GPU Servers via Memory-Saving Inter-Operator Parallelism",
+    "summary": "MPress enables billion-scale DNN model training on a single multi-GPU server by exploiting inter-operator parallelism to save GPU memory.",
+    "abstract": "It remains challenging to train billion-scale DNN models on a single modern multi-GPU server due to the GPU memory wall. MPress democratizes this by leveraging memory-saving inter-operator parallelism, enabling users to train previously infeasible large models without a distributed cluster.",
+    "authors": [
+      "Quan Zhou",
+      "Haiquan Wang",
+      "Xiaoyan Yu",
+      "Cheng Li",
+      "Youhui Bai",
+      "Feng Yan",
+      "Yinlong Xu"
+    ],
+    "venue": "HPCA 2023",
+    "month": "February",
+    "year": 2023,
+    "type": "conference",
+    "research_area": "distributed machine learning",
+    "tags": ["model training", "GPU memory", "inter-operator parallelism", "LLM"],
+    "award": "",
+    "project_slug": "twist",
+    "pdf_url": "https://ieeexplore.ieee.org/document/10071077",
+    "code_url": "",
+    "content": [
+      {
+        "type": "paragraph",
+        "title": "Abstract",
+        "text": "MPress leverages memory-saving inter-operator parallelism to democratize billion-scale DNN model training on a single multi-GPU server, overcoming the GPU memory wall without requiring a distributed cluster."
+      }
+    ]
+  },
+  {
+    "slug": "gradient-compression-sosp-2021",
+    "title": "Gradient Compression Supercharged High-Performance Data Parallel DNN Training",
+    "summary": "This paper introduces Tensor Homomorphic Compression (THC) enabling direct aggregation of compressed gradients, supercharging data parallel DNN training.",
+    "abstract": "Gradient compression is a promising approach to alleviating the communication bottleneck in data parallel DNN training. This paper introduces Tensor Homomorphic Compression (THC), a novel bi-directional compression framework that enables direct aggregation of compressed values while optimizing compression ratios, achieving significant speedups in data parallel training.",
+    "authors": [
+      "Youhui Bai",
+      "Cheng Li",
+      "Quan Zhou",
+      "Jun Yi",
+      "Ping Gong",
+      "Feng Yan",
+      "Ruichuan Chen",
+      "Yinlong Xu"
+    ],
+    "venue": "SOSP 2021",
+    "month": "October",
+    "year": 2021,
+    "type": "conference",
+    "research_area": "distributed machine learning",
+    "tags": ["gradient compression", "DNN training", "distributed systems", "communication"],
+    "award": "",
+    "project_slug": "twist",
+    "pdf_url": "https://www.ruichuan.org/papers/hipress-sosp21.pdf",
+    "code_url": "",
+    "content": [
+      {
+        "type": "paragraph",
+        "title": "Abstract",
+        "text": "Tensor Homomorphic Compression (THC) enables direct aggregation of compressed gradients while maintaining compression efficiency, significantly reducing communication bottlenecks in data parallel DNN training."
+      }
+    ]
+  },
+  {
+    "slug": "spandb-fast-2021",
+    "title": "SpanDB: A Fast, Cost-Effective LSM-tree Based KV Store on Hybrid Storage",
+    "summary": "SpanDB adapts RocksDB to utilize high-speed NVMe SSDs selectively for WAL and top LSM-tree levels, achieving significant throughput and latency improvements.",
+    "abstract": "SpanDB proposes an LSM-tree-based KV store that adapts RocksDB to utilize selective deployment of high-speed SSDs. It allows users to store large volumes of data on cheaper SSDs while relocating the WAL and top LSM-tree levels to faster NVMe SSDs, and provides high-speed parallel WAL writes via SPDK with asynchronous request processing.",
+    "authors": [
+      "Hao Chen",
+      "Chaoyi Ruan",
+      "Cheng Li",
+      "Xiaosong Ma",
+      "Yinlong Xu"
+    ],
+    "venue": "USENIX FAST 2021",
+    "month": "February",
+    "year": 2021,
+    "type": "conference",
+    "research_area": "storage systems",
+    "tags": ["key-value store", "LSM-tree", "NVMe SSD", "storage"],
+    "award": "",
+    "project_slug": "",
+    "pdf_url": "https://www.usenix.org/system/files/fast21-chen-hao.pdf",
+    "code_url": "https://github.com/SpanDB/SpanDB",
+    "content": [
+      {
+        "type": "paragraph",
+        "title": "Abstract",
+        "text": "SpanDB selectively deploys high-speed NVMe SSDs for WAL and top-level LSM-tree data in RocksDB, enabling high-speed parallel WAL writes via SPDK and significantly improving KV store throughput and latency."
+      }
+    ]
+  },
+  {
+    "slug": "autogr-vldb-2021",
+    "title": "AutoGR: Automated Geo-Replication with Fast System Performance and Preserved Application Semantics",
+    "summary": "AutoGR automates geo-replication deployment, freeing programmers from manual consistency annotations while preserving application semantics.",
+    "abstract": "AutoGR proposes an end-to-end geo-replication deployment framework to free programmers from label-intensive tasks. It automatically enables geo-replication features for non-replicated, serializable applications with optimized performance and correct application semantics, building upon the Olisipo fine-grained coordination framework.",
+    "authors": [
+      "Jiawei Wang",
+      "Cheng Li",
+      "Kai Ma",
+      "Jingze Huo",
+      "Feng Yan",
+      "Xinyu Feng",
+      "Yinlong Xu"
+    ],
+    "venue": "VLDB 2021",
+    "month": "May",
+    "year": 2021,
+    "type": "journal",
+    "research_area": "distributed systems",
+    "tags": ["geo-replication", "consistency", "distributed systems", "automation"],
+    "award": "",
+    "project_slug": "",
+    "pdf_url": "https://www.vldb.org/pvldb/vol14/p1517-li.pdf",
+    "code_url": "https://github.com/wangjwchn/autogr",
+    "content": [
+      {
+        "type": "paragraph",
+        "title": "Abstract",
+        "text": "AutoGR automates geo-replication deployment by inferring required consistency annotations, enabling fast system performance and correct application semantics without manual programmer effort."
+      }
+    ]
+  },
+  {
+    "slug": "lunule-sc-2021",
+    "title": "Lunule: An Agile and Judicious Metadata Load Balancer for CephFS",
+    "summary": "Lunule proposes an imbalance factor model for accurate metadata load balancing in CephFS, enabling agile and efficient rebalancing.",
+    "abstract": "Lunule is a novel CephFS metadata load balancer that employs an imbalance factor model for accurately determining when to trigger rebalancing and tolerate benign imbalanced situations. It dynamically adjusts migration plans including migration amount determination and subtree selection based on different workloads.",
+    "authors": [
+      "Yiduo Wang",
+      "Cheng Li",
+      "Xinyang Shao",
+      "Youxu Chen",
+      "Fang Yan",
+      "Yinlong Xu"
+    ],
+    "venue": "SC 2021",
+    "month": "November",
+    "year": 2021,
+    "type": "conference",
+    "research_area": "storage systems",
+    "tags": ["CephFS", "metadata", "load balancing", "distributed file system"],
+    "award": "",
+    "project_slug": "",
+    "pdf_url": "https://dl.acm.org/doi/10.1145/3458817.3476196",
+    "code_url": "",
+    "content": [
+      {
+        "type": "paragraph",
+        "title": "Abstract",
+        "text": "Lunule introduces an imbalance factor model for CephFS metadata load balancing that accurately determines rebalance triggers and dynamically adapts migration plans to workload characteristics."
+      }
+    ]
+  },
+  {
+    "slug": "pagraph-socc-2020",
+    "title": "PaGraph: Scaling GNN Training on Large Graphs via Computation-aware Caching",
+    "summary": "PaGraph accelerates GNN training on large graphs by exploiting GPU cache for frequently accessed graph data and computation-aware graph partitioning.",
+    "abstract": "PaGraph significantly reduces the data loading time in sampling-based GNN training by exploiting available GPU resources to keep frequently accessed graph data in cache. It also employs a lightweight yet effective computation-aware graph partitioning strategy to reduce data movement during training.",
+    "authors": [
+      "Zhiqi Lin",
+      "Cheng Li",
+      "Youshan Miao",
+      "Yunxin Liu",
+      "Yinlong Xu"
+    ],
+    "venue": "SoCC 2020",
+    "month": "October",
+    "year": 2020,
+    "type": "conference",
+    "research_area": "graph neural networks",
+    "tags": ["GNN", "graph training", "caching", "GPU"],
+    "award": "",
+    "project_slug": "",
+    "pdf_url": "https://dl.acm.org/doi/epdf/10.1145/3419111.3421281",
+    "code_url": "https://github.com/zhiqi-0/PaGraph",
+    "content": [
+      {
+        "type": "paragraph",
+        "title": "Abstract",
+        "text": "PaGraph reduces data loading time in GNN training by caching frequently accessed graph data in GPU memory and using computation-aware graph partitioning, achieving significant speedups over existing approaches."
+      }
+    ]
+  },
+  {
+    "slug": "elasticbf-atc-2019",
+    "title": "ElasticBF: Elastic Bloom Filter with Hotness Awareness for Boosting Read Performance in Large Key-Value Stores",
+    "summary": "ElasticBF dynamically adjusts per-SSTable Bloom filter size based on access frequency to improve read performance in LSM-tree-based KV stores.",
+    "abstract": "ElasticBF constructs multiple small filters for each SSTable and dynamically loads them into memory as needed based on access frequency, realizing fine-grained and elastic adjustment of Bloom filter false positive rates to significantly improve read performance in large key-value stores.",
+    "authors": [
+      "Yongkun Li",
+      "Chengjin Tian",
+      "Fan Guo",
+      "Cheng Li",
+      "Yinlong Xu"
+    ],
+    "venue": "USENIX ATC 2019",
+    "month": "July",
+    "year": 2019,
+    "type": "conference",
+    "research_area": "storage systems",
+    "tags": ["Bloom filter", "key-value store", "LSM-tree", "read performance"],
+    "award": "",
+    "project_slug": "",
+    "pdf_url": "https://www.usenix.org/conference/atc19/presentation/li-yongkun",
+    "code_url": "",
+    "content": [
+      {
+        "type": "paragraph",
+        "title": "Abstract",
+        "text": "ElasticBF dynamically adjusts Bloom filter sizes per SSTable based on hotness, reducing false positive rates for frequently accessed data and significantly improving read performance in LSM-tree KV stores."
+      }
+    ]
+  },
+  {
+    "slug": "fine-grained-consistency-atc-2018",
+    "title": "Fine-grained Consistency for Geo-Replicated Systems",
+    "summary": "This paper presents PoR consistency, a novel fine-grained consistency definition that generalizes the trade-off between performance and coordination in geo-replicated systems.",
+    "abstract": "This paper presents Partial Order-Restrictions consistency (PoR consistency), a novel fine-grained consistency definition for geo-replicated systems. PoR consistency generalizes the trade-off between performance and the amount of coordination paid to preserve application invariants, enabling programmers to specify precise consistency requirements per operation.",
+    "authors": [
+      "Cheng Li",
+      "Nuno Preguiça",
+      "Rodrigo Rodrigues"
+    ],
+    "venue": "USENIX ATC 2018",
+    "month": "July",
+    "year": 2018,
+    "type": "conference",
+    "research_area": "distributed systems",
+    "tags": ["consistency", "geo-replication", "distributed systems"],
+    "award": "",
+    "project_slug": "",
+    "pdf_url": "https://www.usenix.org/system/files/conference/atc18/atc18-li_cheng.pdf",
+    "code_url": "",
+    "content": [
+      {
+        "type": "paragraph",
+        "title": "Abstract",
+        "text": "PoR consistency provides a novel fine-grained consistency framework for geo-replicated systems, allowing programmers to specify precise per-operation consistency requirements to balance performance and correctness."
       }
     ]
   }
