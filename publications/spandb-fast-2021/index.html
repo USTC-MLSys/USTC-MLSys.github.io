@@ -3,11 +3,11 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>DHeLlam: General-Purpose, Automatic Micro-Batch Co-Execution for Distributed LLM Training | MLSys Lab</title>
-    <meta name="description" content="ICCD 2025 Best Paper. DHeLlam introduces automatic micro-batch co-execution to reduce communication bottlenecks in distributed LLM training." />
+    <title>SpanDB: A Fast, Cost-Effective LSM-tree Based KV Store on Hybrid Storage | MLSys Lab</title>
+    <meta name="description" content="SpanDB adapts RocksDB to utilize high-speed NVMe SSDs selectively for WAL and top LSM-tree levels, achieving significant throughput and latency improvements." />
     <meta name="theme-color" content="#121417" />
-    <meta property="og:title" content="DHeLlam: General-Purpose, Automatic Micro-Batch Co-Execution for Distributed LLM Training | MLSys Lab" />
-    <meta property="og:description" content="ICCD 2025 Best Paper. DHeLlam introduces automatic micro-batch co-execution to reduce communication bottlenecks in distributed LLM training." />
+    <meta property="og:title" content="SpanDB: A Fast, Cost-Effective LSM-tree Based KV Store on Hybrid Storage | MLSys Lab" />
+    <meta property="og:description" content="SpanDB adapts RocksDB to utilize high-speed NVMe SSDs selectively for WAL and top LSM-tree levels, achieving significant throughput and latency improvements." />
     <meta property="og:type" content="website" />
     <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml" />
     <link rel="manifest" href="/site.webmanifest" />
@@ -48,11 +48,11 @@
           <div class="shell detail-hero__grid">
             <div>
               <p class="detail-hero__eyebrow" data-reveal>Publication</p>
-              <h1 class="detail-hero__title" data-reveal>DHeLlam: General-Purpose, Automatic Micro-Batch Co-Execution for Distributed LLM Training</h1>
-              <p class="detail-hero__summary" data-reveal>DHeLlam targets communication bottlenecks in distributed LLM training and introduces automatic micro-batch co-execution to improve overall training efficiency.</p>
-              <div class="detail-hero__meta" data-reveal><span>ICCD 2025 / 2025 / Best Publication Award</span></div>
-              <div class="detail-hero__tags" data-reveal><span class="chip">LLM training</span><span class="chip">distributed systems</span><span class="chip">micro-batch co-execution</span></div>
-              <div class="detail-hero__actions" data-reveal><a class="button button--ghost" href="https://ieeexplore.ieee.org/document/11310905" target="_blank" rel="noreferrer">PDF</a></div>
+              <h1 class="detail-hero__title" data-reveal>SpanDB: A Fast, Cost-Effective LSM-tree Based KV Store on Hybrid Storage</h1>
+              <p class="detail-hero__summary" data-reveal>SpanDB proposes an LSM-tree-based KV store that adapts RocksDB to utilize selective deployment of high-speed SSDs. It allows users to store large volumes of data on cheaper SSDs while relocating the WAL and top LSM-tree levels to faster NVMe SSDs, and provides high-speed parallel WAL writes via SPDK with asynchronous request processing.</p>
+              <div class="detail-hero__meta" data-reveal><span>USENIX FAST 2021 / February 2021</span></div>
+              <div class="detail-hero__tags" data-reveal><span class="chip">key-value store</span><span class="chip">LSM-tree</span><span class="chip">NVMe SSD</span><span class="chip">storage</span></div>
+              <div class="detail-hero__actions" data-reveal><a class="button button--ghost" href="https://www.usenix.org/system/files/fast21-chen-hao.pdf" target="_blank" rel="noreferrer">PDF</a><a class="button button--ghost" href="https://github.com/SpanDB/SpanDB" target="_blank" rel="noreferrer">Code</a></div>
             </div>
           </div>
         </section>
@@ -62,34 +62,23 @@
                 <article class="detail-prose">
                   <section class="prose-block">
                     <h2 class="prose__heading">Authors</h2>
-                    <p>Haiquan Wang, Chaoyi Ruan, Jia He, Jiaqi Ruan, Chengjie Tang, Xiaosong Ma, Cheng Li</p>
+                    <p>Hao Chen, Chaoyi Ruan, Cheng Li, Xiaosong Ma, Yinlong Xu</p>
                   </section>
                   
                 <section class="prose-block">
                   <h2 class="prose__heading">Abstract</h2>
-                  <p>DHeLlam targets communication bottlenecks in distributed LLM training and introduces automatic micro-batch co-execution to improve overall training efficiency.</p>
+                  <p>SpanDB selectively deploys high-speed NVMe SSDs for WAL and top-level LSM-tree data in RocksDB, enabling high-speed parallel WAL writes via SPDK and significantly improving KV store throughput and latency.</p>
                 </section>
                 
                 </article>
                 <aside class="detail-sidebar" data-reveal>
                   <div class="detail-sidebar__panel">
                     <p class="detail-sidebar__eyebrow">Research area</p>
-                    <p>parallel and distributed intelligent computing</p>
+                    <p>storage systems</p>
                   </div>
                   <div class="detail-sidebar__panel">
                     <p class="detail-sidebar__eyebrow">Related output</p>
-                    <div class="detail-sidebar__stack">
-      <article class="project-card project-card--teal project-card--compact" data-reveal data-filter-item data-filter-tags="training active llm training distributed-systems hopper">
-        <div class="project-card__icon project-card__icon--text" aria-hidden="true">TWIST</div>
-        <div class="card-kicker"><span>Training</span><span>Active</span></div>
-        <h3 class="project-card__title"><a href="https://github.com/USTC-MLSys/TWIST" target="_blank" rel="noreferrer">TWIST</a></h3>
-        <p class="project-card__subtitle"></p>
-        <p class="project-card__summary">High-Efficiency LLM Training System via Strand Interleaving on NVIDIA Hopper GPUs.</p>
-        <div class="chip-row"><span class="chip">llm</span><span class="chip">training</span><span class="chip">distributed-systems</span><span class="chip">hopper</span></div>
-        
-        
-      </article>
-      </div>
+                    <div class="detail-sidebar__stack"><p class="muted">No related entries on the site.</p></div>
                   </div>
                 </aside>
               </div>

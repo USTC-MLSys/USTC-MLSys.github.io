@@ -36,13 +36,240 @@
   },
   {
     "type": "publication",
+    "title": "Mantle: Efficient Hierarchical Metadata Management for Cloud Object Storage Services",
+    "url": "/publications/mantle-sosp-2025/",
+    "summary": "Mantle proposes a two-layer metadata architecture for cloud object storage, enabling scalable hierarchical namespace management.",
+    "tags": [
+      "cloud storage",
+      "metadata management",
+      "distributed file systems",
+      "object storage"
+    ]
+  },
+  {
+    "type": "publication",
+    "title": "AutoCCL: Automated Collective Communication Tuning for Accelerating Distributed and Parallel DNN Training",
+    "url": "/publications/autoccl-nsdi-2025/",
+    "summary": "AutoCCL automates collective communication tuning to accelerate distributed and parallel DNN training.",
+    "tags": [
+      "collective communication",
+      "DNN training",
+      "distributed systems",
+      "auto-tuning"
+    ]
+  },
+  {
+    "type": "publication",
+    "title": "GLPilot: Efficient Distributed GNN Training With Learnable Embeddings",
+    "url": "/publications/glpilot-tpds-2025/",
+    "summary": "GLPilot introduces a staleness-bounded embedding buffering mechanism to reduce remote fetches in distributed GNN training with learnable vertex embeddings.",
+    "tags": [
+      "GNN",
+      "distributed training",
+      "graph learning",
+      "embeddings"
+    ]
+  },
+  {
+    "type": "publication",
+    "title": "Perseus: Achieving Strong Consistency and High Data Freshness for Scalable Geo-distributed HTAP",
+    "url": "/publications/perseus-pacmmod-2025/",
+    "summary": "Perseus is a scalable HTAP database that enforces strong consistency for both transactions and analytical queries across geo-distributed deployments.",
+    "tags": [
+      "HTAP",
+      "geo-distributed",
+      "consistency",
+      "database"
+    ]
+  },
+  {
+    "type": "publication",
     "title": "DHeLlam: General-Purpose, Automatic Micro-Batch Co-Execution for Distributed LLM Training",
     "url": "/publications/dhellam-iccd-2025/",
-    "summary": "ICCD 2025 Best Paper. This paper presents DHeLlam, a system for automatic micro-batch co-execution in distributed LLM training.",
+    "summary": "ICCD 2025 Best Paper. DHeLlam introduces automatic micro-batch co-execution to reduce communication bottlenecks in distributed LLM training.",
     "tags": [
       "LLM training",
       "distributed systems",
       "micro-batch co-execution"
+    ]
+  },
+  {
+    "type": "publication",
+    "title": "VPTQ: Extreme Low-bit Vector Post-Training Quantization for Large Language Models",
+    "url": "/publications/vptq-emnlp-2024/",
+    "summary": "VPTQ leverages vector quantization with second-order optimization to achieve extreme low-bit (1\u20134 bit) compression of LLMs while maintaining high accuracy.",
+    "tags": [
+      "LLM",
+      "quantization",
+      "model compression",
+      "vector quantization"
+    ]
+  },
+  {
+    "type": "publication",
+    "title": "PolyBase: Adapting to Data Affinity Changes in Geo-Replicated Database via Row-Level Consensus-Group Affiliation Re-Assignment",
+    "url": "/publications/polybase-pvldb-2024/",
+    "summary": "PolyBase addresses data affinity misalignment in geo-replicated databases by enabling row-level Paxos-group re-assignment, significantly reducing wide-area round trips.",
+    "tags": [
+      "geo-replication",
+      "database",
+      "Paxos",
+      "consistency"
+    ]
+  },
+  {
+    "type": "publication",
+    "title": "nnScaler: Constraint-Guided Parallelization Plan Generation for Deep Learning Training",
+    "url": "/publications/nnscaler-osdi-2024/",
+    "summary": "nnScaler generates efficient parallelization plans for DNN training via three primitives that capture any parallel plan's model transformation and spatiotemporal scheduling.",
+    "tags": [
+      "deep learning",
+      "parallelization",
+      "DNN training",
+      "distributed systems"
+    ]
+  },
+  {
+    "type": "publication",
+    "title": "gSampler: General and Efficient GPU-based Graph Sampling for Graph Learning",
+    "url": "/publications/gsampler-sosp-2023/",
+    "summary": "gSampler is a general GPU-based graph sampling framework using the ECSF model that unifies 15 popular graph sampling algorithms with high efficiency.",
+    "tags": [
+      "graph sampling",
+      "GPU",
+      "graph learning",
+      "GNN"
+    ]
+  },
+  {
+    "type": "publication",
+    "title": "SPFresh: Incremental In-Place Update for Billion-Scale Vector Search",
+    "url": "/publications/spfresh-sosp-2023/",
+    "summary": "SPFresh supports efficient in-place vector updates for billion-scale ANNS through the LIRE lightweight incremental rebalancing protocol.",
+    "tags": [
+      "vector search",
+      "ANNS",
+      "in-place update",
+      "billion-scale"
+    ]
+  },
+  {
+    "type": "publication",
+    "title": "FrozenHot Cache: Rethinking Cache Management for Modern Hardware",
+    "url": "/publications/frozenhot-eurosys-2023/",
+    "summary": "FrozenHot improves cache scalability on modern multi-core hardware by separating a frozen hot segment that eliminates per-access synchronization overhead.",
+    "tags": [
+      "cache",
+      "storage",
+      "scalability",
+      "multi-core"
+    ]
+  },
+  {
+    "type": "publication",
+    "title": "CFS: Scaling Metadata Service for Distributed File System via Pruned Scope of Critical Sections",
+    "url": "/publications/cfs-eurosys-2023/",
+    "summary": "CFS builds a scalable, fully POSIX-compliant distributed file system by pruning critical sections to reduce locking overhead.",
+    "tags": [
+      "distributed file system",
+      "metadata",
+      "scalability",
+      "POSIX"
+    ]
+  },
+  {
+    "type": "publication",
+    "title": "MPress: Democratizing Billion-Scale Model Training on Multi-GPU Servers via Memory-Saving Inter-Operator Parallelism",
+    "url": "/publications/mpress-hpca-2023/",
+    "summary": "MPress enables billion-scale DNN model training on a single multi-GPU server by exploiting inter-operator parallelism to save GPU memory.",
+    "tags": [
+      "model training",
+      "GPU memory",
+      "inter-operator parallelism",
+      "LLM"
+    ]
+  },
+  {
+    "type": "publication",
+    "title": "Lunule: An Agile and Judicious Metadata Load Balancer for CephFS",
+    "url": "/publications/lunule-sc-2021/",
+    "summary": "Lunule proposes an imbalance factor model for accurate metadata load balancing in CephFS, enabling agile and efficient rebalancing.",
+    "tags": [
+      "CephFS",
+      "metadata",
+      "load balancing",
+      "distributed file system"
+    ]
+  },
+  {
+    "type": "publication",
+    "title": "Gradient Compression Supercharged High-Performance Data Parallel DNN Training",
+    "url": "/publications/gradient-compression-sosp-2021/",
+    "summary": "This paper introduces Tensor Homomorphic Compression (THC) enabling direct aggregation of compressed gradients, supercharging data parallel DNN training.",
+    "tags": [
+      "gradient compression",
+      "DNN training",
+      "distributed systems",
+      "communication"
+    ]
+  },
+  {
+    "type": "publication",
+    "title": "AutoGR: Automated Geo-Replication with Fast System Performance and Preserved Application Semantics",
+    "url": "/publications/autogr-vldb-2021/",
+    "summary": "AutoGR automates geo-replication deployment, freeing programmers from manual consistency annotations while preserving application semantics.",
+    "tags": [
+      "geo-replication",
+      "consistency",
+      "distributed systems",
+      "automation"
+    ]
+  },
+  {
+    "type": "publication",
+    "title": "SpanDB: A Fast, Cost-Effective LSM-tree Based KV Store on Hybrid Storage",
+    "url": "/publications/spandb-fast-2021/",
+    "summary": "SpanDB adapts RocksDB to utilize high-speed NVMe SSDs selectively for WAL and top LSM-tree levels, achieving significant throughput and latency improvements.",
+    "tags": [
+      "key-value store",
+      "LSM-tree",
+      "NVMe SSD",
+      "storage"
+    ]
+  },
+  {
+    "type": "publication",
+    "title": "PaGraph: Scaling GNN Training on Large Graphs via Computation-aware Caching",
+    "url": "/publications/pagraph-socc-2020/",
+    "summary": "PaGraph accelerates GNN training on large graphs by exploiting GPU cache for frequently accessed graph data and computation-aware graph partitioning.",
+    "tags": [
+      "GNN",
+      "graph training",
+      "caching",
+      "GPU"
+    ]
+  },
+  {
+    "type": "publication",
+    "title": "ElasticBF: Elastic Bloom Filter with Hotness Awareness for Boosting Read Performance in Large Key-Value Stores",
+    "url": "/publications/elasticbf-atc-2019/",
+    "summary": "ElasticBF dynamically adjusts per-SSTable Bloom filter size based on access frequency to improve read performance in LSM-tree-based KV stores.",
+    "tags": [
+      "Bloom filter",
+      "key-value store",
+      "LSM-tree",
+      "read performance"
+    ]
+  },
+  {
+    "type": "publication",
+    "title": "Fine-grained Consistency for Geo-Replicated Systems",
+    "url": "/publications/fine-grained-consistency-atc-2018/",
+    "summary": "This paper presents PoR consistency, a novel fine-grained consistency definition that generalizes the trade-off between performance and coordination in geo-replicated systems.",
+    "tags": [
+      "consistency",
+      "geo-replication",
+      "distributed systems"
     ]
   }
 ]
