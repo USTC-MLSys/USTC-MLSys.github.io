@@ -1,65 +1,39 @@
 [
   {
-    "slug": "autoccl-nsdi-2025",
-    "title": "AutoCCL: Automated Collective Communication Tuning for Accelerating Distributed and Parallel DNN Training",
-    "summary": "AutoCCL automates collective communication tuning to accelerate distributed and parallel DNN training.",
-    "abstract": "The collective communication libraries are pivotal in optimizing the performance of distributed and parallel deep neural network (DNN) training. Most network optimizations are under the assumption of fixed collective communication algorithms and parameters, limiting the potential performance gains. AutoCCL proposes an automated framework that tunes collective communication configurations to significantly improve training throughput.",
+    "slug": "accelerating-long-tail-generation-in-synchronous-rlhf-training-via-adaptive-tensor-parallelism-icpp-2026",
+    "title": "Accelerating Long-Tail Generation in Synchronous RLHF Training via Adaptive Tensor Parallelism",
+    "summary": "Reinforcement Learning from Human Feedback (RLHF) has become a key post-training paradigm for improving model quality. However, the.",
+    "abstract": "Reinforcement Learning from Human Feedback (RLHF) has become a key post-training paradigm for improving model quality. However, the synchronous three-stage RLHF pipeline is often bottlenecked by the generation stage, where response-length skew causes the effective batch size to shrink rapidly during decoding, leaving GPUs underutilized while a few long responses remain unfinished. Mainstream frameworks employ a static tensor parallelism (TP) configuration that cannot adapt to changing batch characteristics, leaving substantial performance headroom unexplored. We propose PAT, an adaptive TP method that dynamically reconfigures TP during the generation stage of each RLHF iteration. PAT introduces two key techniques. First, a predictor-guided online reconfiguration method decides both the reconfiguration point and the target TP configuration based on offline profiling, triggering reconfiguration only when the predicted latency benefit outweighs the reconfiguration overhead. Second, a lightweight online reconfiguration mechanism updates only the states and layouts affected by TP changes: it adapts unfinished decoding states through a cost-model-based choice between KV-cache migration and recomputation, performs in-place weight resharding, and reuses cached communication groups. We implement PAT on top of SGLang and integrate it with the VeRL framework. Evaluations on LLaMA3.1-8B and Qwen3-14B using DeepScaleR show that PAT reduces generation latency by up to 34.6% and end-to-end RLHF training iteration latency by up to 27.2% compared to the original VeRL setup.",
     "authors": [
-      "Guanbin Xu",
-      "Zhihao Le",
-      "Yinhe Chen",
-      "Zhiqi Lin",
+      "Long Zhao",
+      "Qinghe Wang",
+      "Jiaan Zhu",
+      "Youhui Bai",
       "Zewen Jin",
-      "Youshan Miao",
+      "Chaoyi Ruan",
+      "Shengnan Wang",
       "Cheng Li"
     ],
-    "venue": "NSDI 2025",
-    "month": "April",
-    "year": 2025,
+    "venue": "ICPP 2026",
+    "month": "May",
+    "year": 2026,
     "type": "conference",
     "research_area": "distributed machine learning",
-    "tags": ["collective communication", "DNN training", "distributed systems", "auto-tuning"],
-    "award": "",
-    "project_slug": "twist",
-    "pdf_url": "https://www.usenix.org/system/files/nsdi25-xu-guanbin.pdf",
-    "code_url": "https://github.com/gbxu/autoccl",
-    "content": [
-      {
-        "type": "paragraph",
-        "title": "Abstract",
-        "text": "The collective communication libraries are pivotal in optimizing the performance of distributed and parallel deep neural network (DNN) training. AutoCCL proposes an automated framework that tunes collective communication configurations to significantly improve training throughput."
-      }
-    ]
-  },
-  {
-    "slug": "dhellam-iccd-2025",
-    "title": "DHeLlam: General-Purpose, Automatic Micro-Batch Co-Execution for Distributed LLM Training",
-    "summary": "ICCD 2025 Best Paper. DHeLlam introduces automatic micro-batch co-execution to reduce communication bottlenecks in distributed LLM training.",
-    "abstract": "DHeLlam targets communication bottlenecks in distributed LLM training and introduces automatic micro-batch co-execution to improve overall training efficiency.",
-    "authors": [
-      "Haiquan Wang",
-      "Chaoyi Ruan",
-      "Jia He",
-      "Jiaqi Ruan",
-      "Chengjie Tang",
-      "Xiaosong Ma",
-      "Cheng Li"
+    "tags": [
+      "training",
+      "distributed systems",
+      "parallel computing",
+      "distributed machine learning"
     ],
-    "venue": "ICCD 2025",
-    "month": "",
-    "year": 2025,
-    "type": "conference",
-    "research_area": "parallel and distributed intelligent computing",
-    "tags": ["LLM training", "distributed systems", "micro-batch co-execution"],
-    "award": "Best Publication Award",
-    "project_slug": "twist",
-    "pdf_url": "https://ieeexplore.ieee.org/document/11310905",
+    "award": "",
+    "project_slug": "",
+    "pdf_url": "/assets/papers/accelerating-long-tail-generation-in-synchronous-rlhf-training-via-adaptive-tensor-parallelism.pdf",
     "code_url": "",
     "content": [
       {
         "type": "paragraph",
         "title": "Abstract",
-        "text": "DHeLlam targets communication bottlenecks in distributed LLM training and introduces automatic micro-batch co-execution to improve overall training efficiency."
+        "text": "Reinforcement Learning from Human Feedback (RLHF) has become a key post-training paradigm for improving model quality. However, the synchronous three-stage RLHF pipeline is often bottlenecked by the generation stage, where response-length skew causes the effective batch size to shrink rapidly during decoding, leaving GPUs underutilized while a few long responses remain unfinished. Mainstream frameworks employ a static tensor parallelism (TP) configuration that cannot adapt to changing batch characteristics, leaving substantial performance headroom unexplored. We propose PAT, an adaptive TP method that dynamically reconfigures TP during the generation stage of each RLHF iteration. PAT introduces two key techniques. First, a predictor-guided online reconfiguration method decides both the reconfiguration point and the target TP configuration based on offline profiling, triggering reconfiguration only when the predicted latency benefit outweighs the reconfiguration overhead. Second, a lightweight online reconfiguration mechanism updates only the states and layouts affected by TP changes: it adapts unfinished decoding states through a cost-model-based choice between KV-cache migration and recomputation, performs in-place weight resharding, and reuses cached communication groups. We implement PAT on top of SGLang and integrate it with the VeRL framework. Evaluations on LLaMA3.1-8B and Qwen3-14B using DeepScaleR show that PAT reduces generation latency by up to 34.6% and end-to-end RLHF training iteration latency by up to 27.2% compared to the original VeRL setup."
       }
     ]
   },
@@ -80,7 +54,12 @@
     "year": 2025,
     "type": "conference",
     "research_area": "storage systems",
-    "tags": ["cloud storage", "metadata management", "distributed file systems", "object storage"],
+    "tags": [
+      "cloud storage",
+      "metadata management",
+      "distributed file systems",
+      "object storage"
+    ],
     "award": "",
     "project_slug": "",
     "pdf_url": "https://madsys.cs.tsinghua.edu.cn/publication/mantle-efficient-hierarchical-metadata-management-for-cloud-object-storage-services/SOSP25-Li.pdf",
@@ -90,6 +69,80 @@
         "type": "paragraph",
         "title": "Abstract",
         "text": "Mantle is a new COSS metadata service for modern cloud workloads. It adopts a two-layer architecture (TafDB + IndexNode) that enables efficient single-RPC path queries and scalable metadata management for large-scale cloud object storage services."
+      }
+    ]
+  },
+  {
+    "slug": "autoccl-nsdi-2025",
+    "title": "AutoCCL: Automated Collective Communication Tuning for Accelerating Distributed and Parallel DNN Training",
+    "summary": "AutoCCL automates collective communication tuning to accelerate distributed and parallel DNN training.",
+    "abstract": "The collective communication libraries are pivotal in optimizing the performance of distributed and parallel deep neural network (DNN) training. Most network optimizations are under the assumption of fixed collective communication algorithms and parameters, limiting the potential performance gains. AutoCCL proposes an automated framework that tunes collective communication configurations to significantly improve training throughput.",
+    "authors": [
+      "Guanbin Xu",
+      "Zhihao Le",
+      "Yinhe Chen",
+      "Zhiqi Lin",
+      "Zewen Jin",
+      "Youshan Miao",
+      "Cheng Li"
+    ],
+    "venue": "NSDI 2025",
+    "month": "April",
+    "year": 2025,
+    "type": "conference",
+    "research_area": "distributed machine learning",
+    "tags": [
+      "collective communication",
+      "DNN training",
+      "distributed systems",
+      "auto-tuning"
+    ],
+    "award": "",
+    "project_slug": "twist",
+    "pdf_url": "https://www.usenix.org/system/files/nsdi25-xu-guanbin.pdf",
+    "code_url": "https://github.com/gbxu/autoccl",
+    "content": [
+      {
+        "type": "paragraph",
+        "title": "Abstract",
+        "text": "The collective communication libraries are pivotal in optimizing the performance of distributed and parallel deep neural network (DNN) training. AutoCCL proposes an automated framework that tunes collective communication configurations to significantly improve training throughput."
+      }
+    ]
+  },
+  {
+    "slug": "glpilot-tpds-2025",
+    "title": "GLPilot: Efficient Distributed GNN Training With Learnable Embeddings",
+    "summary": "GLPilot introduces a staleness-bounded embedding buffering mechanism to reduce remote fetches in distributed GNN training with learnable vertex embeddings.",
+    "abstract": "Graph Neural Networks (GNNs) with learnable vertex embeddings enable models to infer rich, task-specific representations even when vertex features are sparse, noisy, or missing. GLPilot introduces a staleness-bounded embedding buffering mechanism to reduce remote fetches and a local gradient aggregation technique to minimize redundant communications during distributed training.",
+    "authors": [
+      "Chengru Yang",
+      "Chaoyi Ruan",
+      "Chengjie Tang",
+      "Ping Gong",
+      "Shiyi Wang",
+      "Xiang Song",
+      "Cheng Li"
+    ],
+    "venue": "IEEE TPDS 2025",
+    "month": "February",
+    "year": 2025,
+    "type": "journal",
+    "research_area": "graph neural networks",
+    "tags": [
+      "GNN",
+      "distributed training",
+      "graph learning",
+      "embeddings"
+    ],
+    "award": "",
+    "project_slug": "",
+    "pdf_url": "https://ieeexplore.ieee.org/document/11266915",
+    "code_url": "",
+    "content": [
+      {
+        "type": "paragraph",
+        "title": "Abstract",
+        "text": "GLPilot introduces a staleness-bounded embedding buffering mechanism to reduce remote fetches and a local gradient aggregation technique to minimize redundant communications, enabling efficient distributed GNN training with learnable vertex embeddings."
       }
     ]
   },
@@ -114,7 +167,12 @@
     "year": 2025,
     "type": "journal",
     "research_area": "distributed databases",
-    "tags": ["HTAP", "geo-distributed", "consistency", "database"],
+    "tags": [
+      "HTAP",
+      "geo-distributed",
+      "consistency",
+      "database"
+    ],
     "award": "",
     "project_slug": "",
     "pdf_url": "https://dl.acm.org/doi/epdf/10.1145/3749178",
@@ -128,73 +186,38 @@
     ]
   },
   {
-    "slug": "glpilot-tpds-2025",
-    "title": "GLPilot: Efficient Distributed GNN Training With Learnable Embeddings",
-    "summary": "GLPilot introduces a staleness-bounded embedding buffering mechanism to reduce remote fetches in distributed GNN training with learnable vertex embeddings.",
-    "abstract": "Graph Neural Networks (GNNs) with learnable vertex embeddings enable models to infer rich, task-specific representations even when vertex features are sparse, noisy, or missing. GLPilot introduces a staleness-bounded embedding buffering mechanism to reduce remote fetches and a local gradient aggregation technique to minimize redundant communications during distributed training.",
+    "slug": "dhellam-iccd-2025",
+    "title": "DHeLlam: General-Purpose, Automatic Micro-Batch Co-Execution for Distributed LLM Training",
+    "summary": "ICCD 2025 Best Paper. DHeLlam introduces automatic micro-batch co-execution to reduce communication bottlenecks in distributed LLM training.",
+    "abstract": "DHeLlam targets communication bottlenecks in distributed LLM training and introduces automatic micro-batch co-execution to improve overall training efficiency.",
     "authors": [
-      "Chengru Yang",
+      "Haiquan Wang",
       "Chaoyi Ruan",
+      "Jia He",
+      "Jiaqi Ruan",
       "Chengjie Tang",
-      "Ping Gong",
-      "Shiyi Wang",
-      "Xiang Song",
+      "Xiaosong Ma",
       "Cheng Li"
     ],
-    "venue": "IEEE TPDS 2025",
-    "month": "February",
+    "venue": "ICCD 2025",
+    "month": "",
     "year": 2025,
-    "type": "journal",
-    "research_area": "graph neural networks",
-    "tags": ["GNN", "distributed training", "graph learning", "embeddings"],
-    "award": "",
-    "project_slug": "",
-    "pdf_url": "https://ieeexplore.ieee.org/document/11266915",
-    "code_url": "",
-    "content": [
-      {
-        "type": "paragraph",
-        "title": "Abstract",
-        "text": "GLPilot introduces a staleness-bounded embedding buffering mechanism to reduce remote fetches and a local gradient aggregation technique to minimize redundant communications, enabling efficient distributed GNN training with learnable vertex embeddings."
-      }
-    ]
-  },
-  {
-    "slug": "nnscaler-osdi-2024",
-    "title": "nnScaler: Constraint-Guided Parallelization Plan Generation for Deep Learning Training",
-    "summary": "nnScaler generates efficient parallelization plans for DNN training via three primitives that capture any parallel plan's model transformation and spatiotemporal scheduling.",
-    "abstract": "nnScaler advocates a more general approach enabling domain experts to construct their own search spaces via three primitives (op-trans, op-assign, op-order) that capture model transformations and spatiotemporal scheduling of transformed models for any parallel plan. Compared to DeepSpeed, Megatron-LM, and Alpa, nnScaler achieves up to 3.5x speedup on popular DNN models.",
-    "authors": [
-      "Zhiqi Lin",
-      "Youshan Miao",
-      "Quanlu Zhang",
-      "Fan Yang",
-      "Yi Zhu",
-      "Cheng Li",
-      "Saeed Maleki",
-      "Xu Cao",
-      "Ning Shang",
-      "Yilei Yang",
-      "Weijiang Xu",
-      "Mao Yang",
-      "Lintao Zhang",
-      "Lidong Zhou"
-    ],
-    "venue": "OSDI 2024",
-    "month": "July",
-    "year": 2024,
     "type": "conference",
-    "research_area": "distributed machine learning",
-    "tags": ["deep learning", "parallelization", "DNN training", "distributed systems"],
-    "award": "",
+    "research_area": "parallel and distributed intelligent computing",
+    "tags": [
+      "LLM training",
+      "distributed systems",
+      "micro-batch co-execution"
+    ],
+    "award": "Best Publication Award",
     "project_slug": "twist",
-    "pdf_url": "https://www.usenix.org/system/files/osdi24-lin-zhiqi.pdf",
+    "pdf_url": "https://ieeexplore.ieee.org/document/11310905",
     "code_url": "",
     "content": [
       {
         "type": "paragraph",
         "title": "Abstract",
-        "text": "nnScaler enables domain experts to construct custom search spaces for parallel DNN training via three primitives, achieving up to 3.5x speedup over existing solutions like DeepSpeed, Megatron-LM, and Alpa."
+        "text": "DHeLlam targets communication bottlenecks in distributed LLM training and introduces automatic micro-batch co-execution to improve overall training efficiency."
       }
     ]
   },
@@ -218,7 +241,12 @@
     "year": 2024,
     "type": "conference",
     "research_area": "large language models",
-    "tags": ["LLM", "quantization", "model compression", "vector quantization"],
+    "tags": [
+      "LLM",
+      "quantization",
+      "model compression",
+      "vector quantization"
+    ],
     "award": "",
     "project_slug": "",
     "pdf_url": "https://arxiv.org/pdf/2409.17066v1",
@@ -252,7 +280,12 @@
     "year": 2024,
     "type": "journal",
     "research_area": "distributed databases",
-    "tags": ["geo-replication", "database", "Paxos", "consistency"],
+    "tags": [
+      "geo-replication",
+      "database",
+      "Paxos",
+      "consistency"
+    ],
     "award": "",
     "project_slug": "",
     "pdf_url": "https://www.vldb.org/pvldb/vol18/p702-ruan.pdf",
@@ -262,6 +295,88 @@
         "type": "paragraph",
         "title": "Abstract",
         "text": "PolyBase introduces row-level Paxos-group affiliation re-assignment to adapt to data affinity changes in geo-replicated databases, significantly reducing wide-area RTTs without compromising consistency."
+      }
+    ]
+  },
+  {
+    "slug": "nnscaler-osdi-2024",
+    "title": "nnScaler: Constraint-Guided Parallelization Plan Generation for Deep Learning Training",
+    "summary": "nnScaler generates efficient parallelization plans for DNN training via three primitives that capture any parallel plan's model transformation and spatiotemporal scheduling.",
+    "abstract": "nnScaler advocates a more general approach enabling domain experts to construct their own search spaces via three primitives (op-trans, op-assign, op-order) that capture model transformations and spatiotemporal scheduling of transformed models for any parallel plan. Compared to DeepSpeed, Megatron-LM, and Alpa, nnScaler achieves up to 3.5x speedup on popular DNN models.",
+    "authors": [
+      "Zhiqi Lin",
+      "Youshan Miao",
+      "Quanlu Zhang",
+      "Fan Yang",
+      "Yi Zhu",
+      "Cheng Li",
+      "Saeed Maleki",
+      "Xu Cao",
+      "Ning Shang",
+      "Yilei Yang",
+      "Weijiang Xu",
+      "Mao Yang",
+      "Lintao Zhang",
+      "Lidong Zhou"
+    ],
+    "venue": "OSDI 2024",
+    "month": "July",
+    "year": 2024,
+    "type": "conference",
+    "research_area": "distributed machine learning",
+    "tags": [
+      "deep learning",
+      "parallelization",
+      "DNN training",
+      "distributed systems"
+    ],
+    "award": "",
+    "project_slug": "twist",
+    "pdf_url": "https://www.usenix.org/system/files/osdi24-lin-zhiqi.pdf",
+    "code_url": "",
+    "content": [
+      {
+        "type": "paragraph",
+        "title": "Abstract",
+        "text": "nnScaler enables domain experts to construct custom search spaces for parallel DNN training via three primitives, achieving up to 3.5x speedup over existing solutions like DeepSpeed, Megatron-LM, and Alpa."
+      }
+    ]
+  },
+  {
+    "slug": "gsampler-sosp-2023",
+    "title": "gSampler: General and Efficient GPU-based Graph Sampling for Graph Learning",
+    "summary": "gSampler is a general GPU-based graph sampling framework using the ECSF model that unifies 15 popular graph sampling algorithms with high efficiency.",
+    "abstract": "gSampler conducts a comprehensive study on 15 popular graph sampling algorithms to motivate a general and efficient GPU-based graph sampling framework. It employs the Extract-Compute-Select-Finalize (ECSF) model for single-layer graph sampling and provides matrix-centric APIs that are user-friendly and intuitive.",
+    "authors": [
+      "Ping Gong",
+      "Renjie Liu",
+      "Zunyao Mao",
+      "Zhenkun Cai",
+      "Xiao Yan",
+      "Cheng Li",
+      "Minjie Wang",
+      "Zhuozhao Li"
+    ],
+    "venue": "SOSP 2023",
+    "month": "October",
+    "year": 2023,
+    "type": "conference",
+    "research_area": "graph neural networks",
+    "tags": [
+      "graph sampling",
+      "GPU",
+      "graph learning",
+      "GNN"
+    ],
+    "award": "",
+    "project_slug": "",
+    "pdf_url": "https://dl.acm.org/doi/10.1145/3600006.3613168",
+    "code_url": "https://github.com/gsampler9/gSampler",
+    "content": [
+      {
+        "type": "paragraph",
+        "title": "Abstract",
+        "text": "gSampler uses the ECSF model to provide a general and efficient GPU-based graph sampling framework, unifying 15 popular sampling algorithms with matrix-centric APIs and achieving significant speedups over CPU-based approaches."
       }
     ]
   },
@@ -289,7 +404,12 @@
     "year": 2023,
     "type": "conference",
     "research_area": "storage systems",
-    "tags": ["vector search", "ANNS", "in-place update", "billion-scale"],
+    "tags": [
+      "vector search",
+      "ANNS",
+      "in-place update",
+      "billion-scale"
+    ],
     "award": "",
     "project_slug": "",
     "pdf_url": "https://arxiv.org/pdf/2410.14452v1",
@@ -299,39 +419,6 @@
         "type": "paragraph",
         "title": "Abstract",
         "text": "SPFresh introduces LIRE, a lightweight incremental rebalancing protocol for billion-scale vector search, enabling efficient in-place updates that maintain high search quality without full index rebuilds."
-      }
-    ]
-  },
-  {
-    "slug": "gsampler-sosp-2023",
-    "title": "gSampler: General and Efficient GPU-based Graph Sampling for Graph Learning",
-    "summary": "gSampler is a general GPU-based graph sampling framework using the ECSF model that unifies 15 popular graph sampling algorithms with high efficiency.",
-    "abstract": "gSampler conducts a comprehensive study on 15 popular graph sampling algorithms to motivate a general and efficient GPU-based graph sampling framework. It employs the Extract-Compute-Select-Finalize (ECSF) model for single-layer graph sampling and provides matrix-centric APIs that are user-friendly and intuitive.",
-    "authors": [
-      "Ping Gong",
-      "Renjie Liu",
-      "Zunyao Mao",
-      "Zhenkun Cai",
-      "Xiao Yan",
-      "Cheng Li",
-      "Minjie Wang",
-      "Zhuozhao Li"
-    ],
-    "venue": "SOSP 2023",
-    "month": "October",
-    "year": 2023,
-    "type": "conference",
-    "research_area": "graph neural networks",
-    "tags": ["graph sampling", "GPU", "graph learning", "GNN"],
-    "award": "",
-    "project_slug": "",
-    "pdf_url": "https://dl.acm.org/doi/10.1145/3600006.3613168",
-    "code_url": "https://github.com/gsampler9/gSampler",
-    "content": [
-      {
-        "type": "paragraph",
-        "title": "Abstract",
-        "text": "gSampler uses the ECSF model to provide a general and efficient GPU-based graph sampling framework, unifying 15 popular sampling algorithms with matrix-centric APIs and achieving significant speedups over CPU-based approaches."
       }
     ]
   },
@@ -355,7 +442,12 @@
     "year": 2023,
     "type": "conference",
     "research_area": "storage systems",
-    "tags": ["cache", "storage", "scalability", "multi-core"],
+    "tags": [
+      "cache",
+      "storage",
+      "scalability",
+      "multi-core"
+    ],
     "award": "",
     "project_slug": "",
     "pdf_url": "https://junchengyang.com/publication/eurosys23-frozenHot.pdf",
@@ -390,7 +482,12 @@
     "year": 2023,
     "type": "conference",
     "research_area": "storage systems",
-    "tags": ["distributed file system", "metadata", "scalability", "POSIX"],
+    "tags": [
+      "distributed file system",
+      "metadata",
+      "scalability",
+      "POSIX"
+    ],
     "award": "",
     "project_slug": "",
     "pdf_url": "https://dl.acm.org/doi/abs/10.1145/3552326.3587443",
@@ -422,7 +519,12 @@
     "year": 2023,
     "type": "conference",
     "research_area": "distributed machine learning",
-    "tags": ["model training", "GPU memory", "inter-operator parallelism", "LLM"],
+    "tags": [
+      "model training",
+      "GPU memory",
+      "inter-operator parallelism",
+      "LLM"
+    ],
     "award": "",
     "project_slug": "twist",
     "pdf_url": "https://ieeexplore.ieee.org/document/10071077",
@@ -432,6 +534,42 @@
         "type": "paragraph",
         "title": "Abstract",
         "text": "MPress leverages memory-saving inter-operator parallelism to democratize billion-scale DNN model training on a single multi-GPU server, overcoming the GPU memory wall without requiring a distributed cluster."
+      }
+    ]
+  },
+  {
+    "slug": "lunule-sc-2021",
+    "title": "Lunule: An Agile and Judicious Metadata Load Balancer for CephFS",
+    "summary": "Lunule proposes an imbalance factor model for accurate metadata load balancing in CephFS, enabling agile and efficient rebalancing.",
+    "abstract": "Lunule is a novel CephFS metadata load balancer that employs an imbalance factor model for accurately determining when to trigger rebalancing and tolerate benign imbalanced situations. It dynamically adjusts migration plans including migration amount determination and subtree selection based on different workloads.",
+    "authors": [
+      "Yiduo Wang",
+      "Cheng Li",
+      "Xinyang Shao",
+      "Youxu Chen",
+      "Fang Yan",
+      "Yinlong Xu"
+    ],
+    "venue": "SC 2021",
+    "month": "November",
+    "year": 2021,
+    "type": "conference",
+    "research_area": "storage systems",
+    "tags": [
+      "CephFS",
+      "metadata",
+      "load balancing",
+      "distributed file system"
+    ],
+    "award": "",
+    "project_slug": "",
+    "pdf_url": "https://dl.acm.org/doi/10.1145/3458817.3476196",
+    "code_url": "",
+    "content": [
+      {
+        "type": "paragraph",
+        "title": "Abstract",
+        "text": "Lunule introduces an imbalance factor model for CephFS metadata load balancing that accurately determines rebalance triggers and dynamically adapts migration plans to workload characteristics."
       }
     ]
   },
@@ -455,7 +593,12 @@
     "year": 2021,
     "type": "conference",
     "research_area": "distributed machine learning",
-    "tags": ["gradient compression", "DNN training", "distributed systems", "communication"],
+    "tags": [
+      "gradient compression",
+      "DNN training",
+      "distributed systems",
+      "communication"
+    ],
     "award": "",
     "project_slug": "twist",
     "pdf_url": "https://www.ruichuan.org/papers/hipress-sosp21.pdf",
@@ -465,36 +608,6 @@
         "type": "paragraph",
         "title": "Abstract",
         "text": "Tensor Homomorphic Compression (THC) enables direct aggregation of compressed gradients while maintaining compression efficiency, significantly reducing communication bottlenecks in data parallel DNN training."
-      }
-    ]
-  },
-  {
-    "slug": "spandb-fast-2021",
-    "title": "SpanDB: A Fast, Cost-Effective LSM-tree Based KV Store on Hybrid Storage",
-    "summary": "SpanDB adapts RocksDB to utilize high-speed NVMe SSDs selectively for WAL and top LSM-tree levels, achieving significant throughput and latency improvements.",
-    "abstract": "SpanDB proposes an LSM-tree-based KV store that adapts RocksDB to utilize selective deployment of high-speed SSDs. It allows users to store large volumes of data on cheaper SSDs while relocating the WAL and top LSM-tree levels to faster NVMe SSDs, and provides high-speed parallel WAL writes via SPDK with asynchronous request processing.",
-    "authors": [
-      "Hao Chen",
-      "Chaoyi Ruan",
-      "Cheng Li",
-      "Xiaosong Ma",
-      "Yinlong Xu"
-    ],
-    "venue": "USENIX FAST 2021",
-    "month": "February",
-    "year": 2021,
-    "type": "conference",
-    "research_area": "storage systems",
-    "tags": ["key-value store", "LSM-tree", "NVMe SSD", "storage"],
-    "award": "",
-    "project_slug": "",
-    "pdf_url": "https://www.usenix.org/system/files/fast21-chen-hao.pdf",
-    "code_url": "https://github.com/SpanDB/SpanDB",
-    "content": [
-      {
-        "type": "paragraph",
-        "title": "Abstract",
-        "text": "SpanDB selectively deploys high-speed NVMe SSDs for WAL and top-level LSM-tree data in RocksDB, enabling high-speed parallel WAL writes via SPDK and significantly improving KV store throughput and latency."
       }
     ]
   },
@@ -517,7 +630,12 @@
     "year": 2021,
     "type": "journal",
     "research_area": "distributed systems",
-    "tags": ["geo-replication", "consistency", "distributed systems", "automation"],
+    "tags": [
+      "geo-replication",
+      "consistency",
+      "distributed systems",
+      "automation"
+    ],
     "award": "",
     "project_slug": "",
     "pdf_url": "https://www.vldb.org/pvldb/vol14/p1517-li.pdf",
@@ -531,33 +649,37 @@
     ]
   },
   {
-    "slug": "lunule-sc-2021",
-    "title": "Lunule: An Agile and Judicious Metadata Load Balancer for CephFS",
-    "summary": "Lunule proposes an imbalance factor model for accurate metadata load balancing in CephFS, enabling agile and efficient rebalancing.",
-    "abstract": "Lunule is a novel CephFS metadata load balancer that employs an imbalance factor model for accurately determining when to trigger rebalancing and tolerate benign imbalanced situations. It dynamically adjusts migration plans including migration amount determination and subtree selection based on different workloads.",
+    "slug": "spandb-fast-2021",
+    "title": "SpanDB: A Fast, Cost-Effective LSM-tree Based KV Store on Hybrid Storage",
+    "summary": "SpanDB adapts RocksDB to utilize high-speed NVMe SSDs selectively for WAL and top LSM-tree levels, achieving significant throughput and latency improvements.",
+    "abstract": "SpanDB proposes an LSM-tree-based KV store that adapts RocksDB to utilize selective deployment of high-speed SSDs. It allows users to store large volumes of data on cheaper SSDs while relocating the WAL and top LSM-tree levels to faster NVMe SSDs, and provides high-speed parallel WAL writes via SPDK with asynchronous request processing.",
     "authors": [
-      "Yiduo Wang",
+      "Hao Chen",
+      "Chaoyi Ruan",
       "Cheng Li",
-      "Xinyang Shao",
-      "Youxu Chen",
-      "Fang Yan",
+      "Xiaosong Ma",
       "Yinlong Xu"
     ],
-    "venue": "SC 2021",
-    "month": "November",
+    "venue": "USENIX FAST 2021",
+    "month": "February",
     "year": 2021,
     "type": "conference",
     "research_area": "storage systems",
-    "tags": ["CephFS", "metadata", "load balancing", "distributed file system"],
+    "tags": [
+      "key-value store",
+      "LSM-tree",
+      "NVMe SSD",
+      "storage"
+    ],
     "award": "",
     "project_slug": "",
-    "pdf_url": "https://dl.acm.org/doi/10.1145/3458817.3476196",
-    "code_url": "",
+    "pdf_url": "https://www.usenix.org/system/files/fast21-chen-hao.pdf",
+    "code_url": "https://github.com/SpanDB/SpanDB",
     "content": [
       {
         "type": "paragraph",
         "title": "Abstract",
-        "text": "Lunule introduces an imbalance factor model for CephFS metadata load balancing that accurately determines rebalance triggers and dynamically adapts migration plans to workload characteristics."
+        "text": "SpanDB selectively deploys high-speed NVMe SSDs for WAL and top-level LSM-tree data in RocksDB, enabling high-speed parallel WAL writes via SPDK and significantly improving KV store throughput and latency."
       }
     ]
   },
@@ -578,7 +700,12 @@
     "year": 2020,
     "type": "conference",
     "research_area": "graph neural networks",
-    "tags": ["GNN", "graph training", "caching", "GPU"],
+    "tags": [
+      "GNN",
+      "graph training",
+      "caching",
+      "GPU"
+    ],
     "award": "",
     "project_slug": "",
     "pdf_url": "https://dl.acm.org/doi/epdf/10.1145/3419111.3421281",
@@ -608,7 +735,12 @@
     "year": 2019,
     "type": "conference",
     "research_area": "storage systems",
-    "tags": ["Bloom filter", "key-value store", "LSM-tree", "read performance"],
+    "tags": [
+      "Bloom filter",
+      "key-value store",
+      "LSM-tree",
+      "read performance"
+    ],
     "award": "",
     "project_slug": "",
     "pdf_url": "https://www.usenix.org/conference/atc19/presentation/li-yongkun",
@@ -636,7 +768,11 @@
     "year": 2018,
     "type": "conference",
     "research_area": "distributed systems",
-    "tags": ["consistency", "geo-replication", "distributed systems"],
+    "tags": [
+      "consistency",
+      "geo-replication",
+      "distributed systems"
+    ],
     "award": "",
     "project_slug": "",
     "pdf_url": "https://www.usenix.org/system/files/conference/atc18/atc18-li_cheng.pdf",

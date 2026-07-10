@@ -7,6 +7,10 @@
   "email": "",
   "github": "",
   "location": "University of Science and Technology of China",
+  "portal": {
+    "label": "Submit",
+    "url": "http://127.0.0.1:8123"
+  },
   "announcement": null,
   "hero": {
     "eyebrow": "MLSys Lab",

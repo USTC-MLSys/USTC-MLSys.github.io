@@ -61,6 +61,28 @@ def format_date(value: str) -> str:
     return parsed.strftime("%B %d, %Y")
 
 
+def parse_publication_sort_date(publication: dict[str, Any]) -> tuple[int, int, int]:
+    month_order = {
+        "January": 1,
+        "February": 2,
+        "March": 3,
+        "April": 4,
+        "May": 5,
+        "June": 6,
+        "July": 7,
+        "August": 8,
+        "September": 9,
+        "October": 10,
+        "November": 11,
+        "December": 12,
+    }
+    return (
+        int(publication.get("year") or 0),
+        month_order.get(publication.get("month", ""), 0),
+        0,
+    )
+
+
 def join_classes(*classes: str) -> str:
     return " ".join(part for part in classes if part)
 
@@ -347,11 +369,22 @@ class SiteRenderer:
             for href, label, section in nav_items
         )
         collaboration_links = self.site.get("collaboration", {}).get("links", [])
-        collaboration_cta = ""
-        if collaboration_links:
+        nav_cta = ""
+        portal = self.site.get("portal", {})
+        portal_label = str(portal.get("label", "")).strip()
+        portal_url = str(portal.get("url", "")).strip()
+        if portal_label and portal_url:
+            resolved_portal_url = resolve_url(self.base_path, portal_url)
+            nav_cta = (
+                f'<a class="button button--ghost button--compact site-nav__cta" '
+                f'href="{resolved_portal_url}"'
+                f'{external_attrs(resolved_portal_url)}>'
+                f"{h(portal_label)}</a>"
+            )
+        elif collaboration_links:
             collaboration_url = collaboration_links[0]["url"]
-            collaboration_cta = (
-                f'<a class="button button--primary button--compact site-nav__cta" '
+            nav_cta = (
+                f'<a class="button button--ghost button--compact site-nav__cta" '
                 f'href="{resolve_url(self.base_path, collaboration_url)}"'
                 f'{external_attrs(resolve_url(self.base_path, collaboration_url))}>'
                 f"{h(collaboration_links[0]['label'])}</a>"
@@ -415,7 +448,7 @@ class SiteRenderer:
         </div>
         <nav class="site-nav" id="site-nav" data-menu-panel>
           {nav_links}
-          {collaboration_cta}
+          {nav_cta}
         </nav>
       </div>
     </header>
@@ -480,13 +513,7 @@ class SiteRenderer:
         featured_projects = pick_by_slugs(self.projects, self.site.get("featured_project_slugs", [])) or self.projects[:3]
         featured_blog = pick_by_slugs(self.blog, self.site.get("featured_project_slugs", [])) or self.blog[:3]
         featured_publications = pick_by_slugs(self.publications, self.site.get("featured_publication_slugs", [])) or self.publications[:3]
-        spotlight_cards: list[str] = []
-        if featured_projects:
-            spotlight_cards.append(self.render_project_card(featured_projects[0], compact=True))
-        if featured_blog:
-            spotlight_cards.append(self.render_blog_card(featured_blog[0], compact=True))
-        if featured_publications:
-            spotlight_cards.append(self.render_publication_card(featured_publications[0], compact=True))
+        latest_carousel = self.render_latest_carousel(max_items=9)
         research_cards = "".join(
             f"""
             <article class="theme-card" data-reveal>
@@ -534,14 +561,20 @@ class SiteRenderer:
         </section>
         """,
         ]
-        if spotlight_cards:
+        if latest_carousel:
             body_parts.append(
                 f"""
         <section class="section section--spotlight">
           <div class="shell">
             {render_section_heading('Featured', 'Latest from the lab.', '')}
-            <div class="spotlight-grid">
-              {''.join(spotlight_cards)}
+            <div class="latest-carousel" data-carousel-root>
+              <div class="latest-carousel__controls">
+                <button class="latest-carousel__control" type="button" data-carousel-prev aria-label="Scroll latest items left">Previous</button>
+                <button class="latest-carousel__control" type="button" data-carousel-next aria-label="Scroll latest items right">Next</button>
+              </div>
+              <div class="latest-carousel__track" data-carousel-track>
+                {latest_carousel}
+              </div>
             </div>
           </div>
         </section>
@@ -1089,11 +1122,12 @@ class SiteRenderer:
             "project-card",
             f"project-card--{post.get('tone', 'copper')}",
             "project-card--compact" if compact else "",
-            "project-card--has-media" if image_src else "",
+            "project-card--has-media" if image_src and not compact else "",
         )
 
+        media_class = "project-card__media project-card__media--inline" if compact else "project-card__media"
         media_html = (
-          f'<div class="project-card__media"><img src="{h(image_src)}" alt="{h(image_alt)}" loading="lazy"/>'
+          f'<div class="{media_class}"><img src="{h(image_src)}" alt="{h(image_alt)}" loading="lazy"/>'
           f'</div>'
           if image_src
           else ""
@@ -1101,16 +1135,17 @@ class SiteRenderer:
 
         return f"""
         <article class="{classes}" data-reveal data-filter-item data-filter-tags="{' '.join(tokens)}">
-          <div>
-            <div class="card-kicker">
+            <div>
+              <div class="card-kicker">
               <span>{h(post.get('page_label', 'Blog'))}</span>
             </div>
             <h3 class="project-card__title"><a href="{resolve_url(self.base_path, f"blog/{post['slug']}/")}">{h(post['title'])}</a></h3>
             <p class="project-card__subtitle">{h(post.get('subtitle') or '')}</p>
             <p class="project-card__summary">{h(post.get('summary') or '')}</p>
-            <div class="chip-row">{render_tag_list(post.get('tags', [])[:4])}</div>
+            {media_html if compact else ""}
+            <div class="chip-row">{render_tag_list(post.get('tags', [])[:3] if compact else post.get('tags', [])[:4])}</div>
           </div>
-          {media_html}
+          {"" if compact else media_html}
         </article>
         """
 
@@ -1264,6 +1299,55 @@ class SiteRenderer:
                 {''.join(entries)}
             </div>
         """
+
+    def render_latest_carousel(self, max_items: int = 9) -> str:
+        latest_items: list[tuple[tuple[int, int, int], str, dict[str, Any]]] = []
+
+        for blog in self.blog:
+            if blog.get("status") != "published":
+                continue
+            date_str = str(blog.get("date", "")).strip()
+            try:
+                parsed = datetime.strptime(date_str, "%Y-%m-%d")
+                sort_key = (parsed.year, parsed.month, parsed.day)
+            except ValueError:
+                sort_key = (0, 0, 0)
+            latest_items.append((sort_key, "blog", blog))
+
+        for publication in self.publications:
+            latest_items.append((parse_publication_sort_date(publication), "publication", publication))
+
+        for project in self.projects:
+            sort_key = (
+                int(project.get("year") or 0),
+                int(project.get("month") or 0),
+                int(project.get("day") or 0),
+            )
+            latest_items.append((sort_key, "project", project))
+
+        latest_items.sort(key=lambda item: (item[0], item[2].get("title", "")), reverse=True)
+        selected = latest_items[:max_items]
+
+        cards: list[str] = []
+        for _, item_type, item in selected:
+            if item_type == "blog":
+                badge = "Blog"
+                card = self.render_blog_card(item, compact=True)
+            elif item_type == "publication":
+                badge = "Publication"
+                card = self.render_publication_card(item, compact=True)
+            else:
+                badge = "Project"
+                card = self.render_project_card(item, compact=True)
+            cards.append(
+                f"""
+                <div class="latest-carousel__item" data-carousel-item>
+                  <div class="latest-carousel__badge">{h(badge)}</div>
+                  {card}
+                </div>
+                """
+            )
+        return "".join(cards)
 
 
 def render_site(content: dict[str, Any], base_path: str) -> list[RenderedPage]:

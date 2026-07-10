@@ -230,3 +230,22 @@ document.querySelectorAll("[data-filter-root]").forEach((root) => {
     });
   });
 });
+
+document.querySelectorAll("[data-carousel-root]").forEach((root) => {
+  const track = root.querySelector("[data-carousel-track]");
+  const prev = root.querySelector("[data-carousel-prev]");
+  const next = root.querySelector("[data-carousel-next]");
+  if (!track || !prev || !next) {
+    return;
+  }
+
+  const scrollAmount = () => Math.max(track.clientWidth * 0.85, 320);
+
+  prev.addEventListener("click", () => {
+    track.scrollBy({ left: -scrollAmount(), behavior: "smooth" });
+  });
+
+  next.addEventListener("click", () => {
+    track.scrollBy({ left: scrollAmount(), behavior: "smooth" });
+  });
+});
